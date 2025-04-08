@@ -1,0 +1,231 @@
+/* Global Styles */
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'; /* Added Poppins font import */
+
+body {
+  font-family: 'Montserrat', sans-serif; /* Default font */
+  margin: 0;
+  padding: 0;
+  background-color: #e9d946;
+}
+
+/* Header section */
+#header {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: auto;
+}
+
+#header .logo {
+  max-height: 6rem; /* Limits the logo's max height */
+  max-width: 100%; /* Ensures the logo doesn't exceed its container's width */
+  width: auto; /* Maintains the logo's aspect ratio */
+  height: auto; /* Maintains the logo's aspect ratio */
+  padding: 1rem 0; /* Adjust padding as needed */
+  justify-content: center; /* Centers the logo horizontally */
+}
+
+#header .header {
+  min-height: 3vh; /* Reduced height */
+  background-color: #0e0949;
+  transition: 0.3s ease background-color;
+}
+
+/* Text and Colors */
+.text-custom-blue {
+  color: #1E10AF;
+}
+
+.text-yellow-900 {
+  color: #f58217;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-4xl {
+  font-size: 2rem; /* Slightly smaller font size */
+}
+
+.text-5xl {
+  font-size: 2.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif; /* Poppins font for specific sections */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.md\:flex-row {
+  flex-direction: row;
+}
+
+.md\:w-3\/5 {
+  width: 60%;
+}
+
+.md\:ml-8 {
+  margin-left: 2rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.space-x-6 {
+  margin-right: 1.5rem;
+}
+
+.hover\:opacity-80:hover {
+  opacity: 0.8;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.max-w-screen-xl {
+  max-width: 1280px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Custom Blue Color */
+.bg-custom-blue {
+  background-color: #1E10AF;
+}
+
+/* Loader Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-top: 12px solid #1E10AF;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.5s linear infinite;
+}
+
+/* Responsive Design with Media Queries */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2rem;
+  }
+
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .md\:flex-row {
+    flex-direction: column;
+  }
+
+  .md\:w-3\/5 {
+    width: 100%;
+  }
+
+  .mt-8 {
+    margin-top: 1.5rem;
+  }
+
+  .space-x-6 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+
+  .text-5xl {
+    font-size: 2rem;
+  }
+
+  .mt-8 {
+    margin-top: 1rem;
+  }
+
+  .mb-8 {
+    margin-bottom: 1rem;
+  }
+
+  .h-8 {
+    height: 1.5rem;
+  }
+
+  .w-8 {
+    width: 1.5rem;
+  }
+}
