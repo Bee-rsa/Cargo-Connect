@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'], 
-        serif: ['Georgia', 'serif'],   
-        poppins: ['Poppins', 'sans-serif'], 
+        sans: ['Roboto', 'sans-serif'],
+        serif: ['Georgia', 'serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
-        'custom-blue': '#000042', 
+        'custom-blue': '#000042',
         'custom-sage': '#e79f31',
       },
     },

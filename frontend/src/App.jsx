@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { Toaster } from "sonner";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import ScrollToTop from './components/Layout/ScrollToTop';
 import CollectionPage from "./pages/CollectionPage";
 import ProductDetails from "./components/Products/ProductDetails";
 import Checkout from "./components/Cart/Checkout";
@@ -19,6 +20,10 @@ import OrderManagement from "./components/Admin/OrderManagement";
 import Pricing from "./pages/Pricing";
 import UserLoginPage from "./pages/Login";
 import OperatorLoginPage from "./pages/operatorLoginPage";
+import EmailVerificationPage from "./pages/EmailVerificationPage";
+import OperatorEmailVerificationPage from "./pages/OperatorEmailVerificationPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 /* User Login */
 import UserHomePage from "./pages/userHome";
 /* Company */
@@ -35,7 +40,6 @@ import FutureOfFreight from "./pages/Resources/Blogs/FutureOfFreight";
 /* Business Hub */
 /* Products */
 
-
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
@@ -43,9 +47,8 @@ import ProtectedRoute from "./components/Common/ProtectedRoute";
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ScrollToTop />
         <Toaster position="top-right" />
         <Routes>
           <Route path="/" element={<UserLayout />}>
@@ -54,40 +57,40 @@ const App = () => {
             <Route path="/operator-login-page" element={<OperatorLoginPage />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
-            <Route path='/pricing' element={<Pricing />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path='/verify-email' element={<EmailVerificationPage />} />
+            <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
+            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+            <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
 
             {/* User Login */}
             <Route
-            path="/user-home"
-            element={
-              <ProtectedRoute role="customer">
-                <UserLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<UserHomePage />} />
-          </Route>
+              path="/user-home"
+              element={
+                <ProtectedRoute role="customer">
+                  <UserLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<UserHomePage />} />
+            </Route>
 
             {/* Company */}
-            <Route path='/about-cargo-connect' element={<AboutCargoConnect />} />
-            <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-            <Route path='/help-center' element={<HelpCenter />} />
-            {/* Resources */}
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/future-of-freight' element={<FutureOfFreight />} />
-            <Route path='/weight-calculator' element={<WeightCalculator />} /> 
+            <Route path="/about-cargo-connect" element={<AboutCargoConnect />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/help-center" element={<HelpCenter />} />
 
-            <Route
-              path="collections/:collection"
-              element={<CollectionPage />}
-            />
+            {/* Resources */}
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/future-of-freight" element={<FutureOfFreight />} />
+            <Route path="/weight-calculator" element={<WeightCalculator />} /> 
+
+            {/* Products */}
+            <Route path="collections/:collection" element={<CollectionPage />} />
             <Route path="product/:id" element={<ProductDetails />} />
             <Route path="checkout" element={<Checkout />} />
-            <Route
-              path="order-confirmation"
-              element={<OrderConfirmationPage />}
-            />
+            <Route path="order-confirmation" element={<OrderConfirmationPage />} />
             <Route path="order/:id" element={<OrderDetailsPage />} />
             <Route path="my-orders" element={<MyOrdersPage />} />
           </Route>
@@ -111,4 +114,5 @@ const App = () => {
     </Provider>
   );
 };
+
 export default App;

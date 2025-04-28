@@ -24,10 +24,7 @@ const LoginPage = () => {
 
   return (
     <div
-      className="min-h-screen w-full flex justify-center items-center"
-      style={{
-        backgroundImage: "linear-gradient(135deg, #1B2E52 0%, #5185AB 100%)",
-      }}
+      className="min-h-screen w-full -mt-0.5 bg-gradient-to-br from-custom-blue via-blue-900 to-custom-blue flex justify-center items-center"
     >
       <style>
         {`

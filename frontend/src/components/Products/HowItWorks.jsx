@@ -7,7 +7,7 @@ const HowItWorks = () => {
     {
       img: step1Image,
       title: 'Register',
-      desc: 'Create an account with Freight iT by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.',
+      desc: 'Create an account with Cargo Connect by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.',
     },
     {
       img: step2Image,
@@ -23,9 +23,9 @@ const HowItWorks = () => {
 
   return (
     <div className="w-full p-4">
-      <section className="bg-white p-4 mb-8 w-full">
-        <h2 className="text-4xl font-bold text-custom-blue mb-6 text-left font-poppins">
-          How To Transport Your Cargo With Freight iT
+      <section className="bg-white p-2 mb-8 w-full">
+        <h2 className="text-3xl font-bold text-custom-blue mb-6 text-left font-poppins">
+          How To Transport Your Cargo With Cargo Connect!
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, idx) => (
