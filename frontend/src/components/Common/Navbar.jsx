@@ -37,7 +37,7 @@ const Navbar = () => {
     <>
       <nav className="w-full bg-custom-blue flex justify-between items-center py-2 px-6">
         {/* Left - Logo */}
-        <div className="text-2xl text-white font-extrabold tracking-tight">
+        <div className="text-3xl text-white font-extrabold tracking-tight">
           <Link to="/">Cargo Connect</Link>
         </div>
 
@@ -161,7 +161,7 @@ const Navbar = () => {
       <TopBar />
         {/* Header with logo, search and close button */}
         <div className="flex justify-between items-center p-4 border-b border-gray-900">
-          <div className="text-2xl text-white font-extrabold tracking-tight">
+          <div className="text-3xl text-white font-extrabold tracking-tight">
             <Link to="/" onClick={handleLinkClick}>Cargo Connect</Link>
           </div>
           <div className="flex items-center space-x-4">

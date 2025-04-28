@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react"; // <-- import these
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { Toaster } from "sonner";
+
 import UserLayout from "./components/Layout/UserLayout";
 import Home from "./pages/Home";
-import { Toaster } from "sonner";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ScrollToTop from './components/Layout/ScrollToTop';
@@ -24,27 +27,46 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import OperatorEmailVerificationPage from "./pages/OperatorEmailVerificationPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import OperatorSignUpPage from "./pages/OperatorSignupPage";
+
 /* User Login */
 import UserHomePage from "./pages/userHome";
+
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
 import TermsAndConditions from "./pages/Company/TermsAndConditions";
 import PrivacyPolicy from "./pages/Company/PrivacyPolicy";
 import HelpCenter from "./pages/Company/HelpCenter";
+
 /* Resources */
 import WeightCalculator from "./pages/Resources/WeightCalculator";
+
 /* Blogs Folder */
 import Blog from "./pages/Resources/Blog"; 
 import FutureOfFreight from "./pages/Resources/Blogs/FutureOfFreight";
 
-/* Business Hub */
-/* Products */
-
-import { Provider } from "react-redux";
+/* Redux store */
 import store from "./redux/store";
+
+/* Common Components */
 import ProtectedRoute from "./components/Common/ProtectedRoute";
+import LoadingSpinner from "./components/LoadSpinner"; // <-- Spinner
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true); // <-- start loading
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // <-- after 2 seconds, stop loading
+    }, 2000);
+
+    return () => clearTimeout(timer); // cleanup
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />; // <-- while loading, show spinner
+  }
+
   return (
     <Provider store={store}>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -62,20 +84,17 @@ const App = () => {
             <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
+            <Route path='/operator-register' element={<OperatorSignUpPage />} />
 
-            {/* User Login */}
-            <Route
-              path="/user-home"
-              element={
-                <ProtectedRoute role="customer">
-                  <UserLayout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path="/user-home" element={
+              <ProtectedRoute role="customer">
+                <UserLayout />
+              </ProtectedRoute>
+            }>
               <Route index element={<UserHomePage />} />
             </Route>
 
-            {/* Company */}
+            {/* Company Pages */}
             <Route path="/about-cargo-connect" element={<AboutCargoConnect />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -84,9 +103,9 @@ const App = () => {
             {/* Resources */}
             <Route path="/blog" element={<Blog />} />
             <Route path="/future-of-freight" element={<FutureOfFreight />} />
-            <Route path="/weight-calculator" element={<WeightCalculator />} /> 
+            <Route path="/weight-calculator" element={<WeightCalculator />} />
 
-            {/* Products */}
+            {/* Products / Shopping */}
             <Route path="collections/:collection" element={<CollectionPage />} />
             <Route path="product/:id" element={<ProductDetails />} />
             <Route path="checkout" element={<Checkout />} />
@@ -95,14 +114,12 @@ const App = () => {
             <Route path="my-orders" element={<MyOrdersPage />} />
           </Route>
 
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute role="admin">
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Admin Area */}
+          <Route path="/admin" element={
+            <ProtectedRoute role="admin">
+              <AdminLayout />
+            </ProtectedRoute>
+          }>
             <Route index element={<AdminHomePage />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="products" element={<ProductManagement />} />
