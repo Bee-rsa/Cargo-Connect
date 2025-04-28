@@ -22,8 +22,8 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="w-full p-6">
-      <section className="bg-white p-6 mb-8 w-full">
+    <div className="w-full p-4">
+      <section className="bg-white p-4 mb-8 w-full">
         <h2 className="text-4xl font-bold text-custom-blue mb-6 text-left font-poppins">
           How To Transport Your Cargo With Freight iT
         </h2>

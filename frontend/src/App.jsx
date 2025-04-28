@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserLayout from "./components/Layout/UserLayout";
 import Home from "./pages/Home";
 import { Toaster } from "sonner";
-import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import CollectionPage from "./pages/CollectionPage";
@@ -18,6 +17,10 @@ import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
 import Pricing from "./pages/Pricing";
+import UserLoginPage from "./pages/Login";
+import OperatorLoginPage from "./pages/operatorLoginPage";
+/* User Login */
+import UserHomePage from "./pages/userHome";
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
 import TermsAndConditions from "./pages/Company/TermsAndConditions";
@@ -47,10 +50,24 @@ const App = () => {
         <Routes>
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="/login" element={<UserLoginPage />} />
+            <Route path="/operator-login-page" element={<OperatorLoginPage />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path='/pricing' element={<Pricing />} />
+
+            {/* User Login */}
+            <Route
+            path="/user-home"
+            element={
+              <ProtectedRoute role="customer">
+                <UserLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<UserHomePage />} />
+          </Route>
+
             {/* Company */}
             <Route path='/about-cargo-connect' element={<AboutCargoConnect />} />
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
@@ -74,6 +91,7 @@ const App = () => {
             <Route path="order/:id" element={<OrderDetailsPage />} />
             <Route path="my-orders" element={<MyOrdersPage />} />
           </Route>
+
           <Route
             path="/admin"
             element={
