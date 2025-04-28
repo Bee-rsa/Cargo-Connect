@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { HiOutlineUser, HiBars3BottomRight, HiXMark } from "react-icons/hi2";
-import { FaBox, FaBuilding, FaBook, FaInfoCircle, FaAngleRight, FaAngleDown, FaDollarSign } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuthStore } from "../../store/authStore";
+import TopBar from "../Layout/Topbar";
 
 const Navbar = () => {
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
   const [expandedLink, setExpandedLink] = useState(null);
   const { user } = useSelector((state) => state.auth);
-  const { isLoggedIn, logout } = useAuthStore();
+  const { isLoggedIn } = useAuthStore();
 
   const toggleNavDrawer = () => {
     setNavDrawerOpen(!navDrawerOpen);
@@ -32,13 +32,6 @@ const Navbar = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error("Logout failed", error);
-    }
-  };
 
   return (
     <>
@@ -163,167 +156,158 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Slide-in */}
-      {navDrawerOpen && (
-        <div className="md:hidden fixed inset-0 z-50">
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50"
-            onClick={toggleNavDrawer}
-          ></div>
-          <div className="fixed inset-y-0 right-0 w-3/4 bg-custom-blue shadow-xl overflow-y-auto">
-            <div className="flex flex-col p-6">
-              {/* Close button at top right */}
-              <button 
-                onClick={toggleNavDrawer}
-                className="absolute top-4 right-4 text-white focus:outline-none"
-              >
-                <HiXMark className="h-6 w-6" />
-              </button>
-
-              <div className="text-2xl text-white font-extrabold tracking-tight mb-6">
-                <Link to="/" onClick={handleLinkClick}>Cargo Connect</Link>
-              </div>
-
-              {/* Products */}
-              <div className="mb-4">
-                <div
-                  className="flex items-center justify-between space-x-2 text-white p-1 transition duration-300 font-poppins text-xl cursor-pointer border-b border-gray-600"
-                  onClick={() => toggleSublinks("products")}
-                >
-                  <div className="flex items-center">
-                    <FaBox className="text-custom-sage mr-4" />
-                    <span>Products</span>
-                  </div>
-                  {expandedLink === "products" ? (
-                    <FaAngleDown className="text-white" />
-                  ) : (
-                    <FaAngleRight className="text-white" />
-                  )}
-                </div>
-                {expandedLink === "products" && (
-                  <div className="ml-10 mt-2 space-y-2 flex flex-col">
-                    <Link to="/products/item1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Item 1</Link>
-                    <Link to="/products/item2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Item 2</Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Business Hub */}
-              <div className="mb-4">
-                <div
-                  className="flex items-center justify-between space-x-2 mt-2 text-white p-1 transition duration-300 font-poppins text-xl cursor-pointer border-b border-gray-600"
-                  onClick={() => toggleSublinks("businessHub")}
-                >
-                  <div className="flex items-center">
-                    <FaBuilding className="text-custom-sage mr-4" />
-                    <span>Business Hub</span>
-                  </div>
-                  {expandedLink === "businessHub" ? (
-                    <FaAngleDown className="text-white" />
-                  ) : (
-                    <FaAngleRight className="text-white" />
-                  )}
-                </div>
-                {expandedLink === "businessHub" && (
-                  <div className="ml-8 mt-2 space-y-2 flex flex-col">
-                    <Link to="/operator-login" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Login in</Link>
-                    <Link to="/trucking-page" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Trucking</Link>
-                    <Link to="/courier-services" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Courier Services</Link>
-                    <Link to="/ocean-freight" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Ocean Freight</Link>
-                    <Link to="/warehousing" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Warehousing</Link>
-                    <Link to="/freight-forwarders" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Freight Forwarders</Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Resources */}
-              <div className="mb-4">
-                <div
-                  className="flex items-center justify-between space-x-2 mt-2 text-white p-1 transition duration-300 font-poppins text-xl cursor-pointer border-b border-gray-600"
-                  onClick={() => toggleSublinks("resources")}
-                >
-                  <div className="flex items-center">
-                    <FaBook className="text-custom-sage mr-4" />
-                    <span>Resources</span>
-                  </div>
-                  {expandedLink === "resources" ? (
-                    <FaAngleDown className="text-white" />
-                  ) : (
-                    <FaAngleRight className="text-white" />
-                  )}
-                </div>
-                {expandedLink === "resources" && (
-                  <div className="ml-10 mt-2 space-y-2 flex flex-col">
-                    <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Guides</Link>
-                    <Link to="/blog" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Blog</Link>
-                    <Link to="/weight-calculator" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Weight Calculator</Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Company */}
-              <div className="">
-                <div
-                  className="flex items-center justify-between space-x-2 text-white p-2 transition duration-300 font-poppins text-xl cursor-pointer border-b border-gray-600"
-                  onClick={() => toggleSublinks("company")}
-                >
-                  <div className="flex items-center">
-                    <FaInfoCircle className="text-custom-sage mr-4" />
-                    <span>Company</span>
-                  </div>
-                  {expandedLink === "company" ? (
-                    <FaAngleDown className="text-white" />
-                  ) : (
-                    <FaAngleRight className="text-white" />
-                  )}
-                </div>
-                {expandedLink === "company" && (
-                  <div className="ml-10 mt-2 space-y-2 flex flex-col">
-                    <Link to="/about-cargo-connect" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>About Us</Link>
-                    <Link to="/contact-page" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Talk To An Expert</Link>
-                    <Link to="/privacy-policy" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Privacy Policy</Link>
-                    <Link to="/terms-and-conditions" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-2" onClick={handleLinkClick}>Terms & Conditions</Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Pricing */}
-<div className="mb-4">
-  <Link 
-    to="/pricing" 
-    className="flex items-center justify-between space-x-2 text-white mt-4 p-1 transition duration-300 font-poppins text-xl cursor-pointer border-b border-gray-600" 
-    onClick={handleLinkClick}
-  >
-    <div className="flex items-center">
-      <FaDollarSign className="text-custom-sage mr-4" />
-      <span>Pricing</span>
-    </div>
-  </Link>
-</div>
-
-              {/* Auth Links */}
-              <div className="mt-4">
-                {isLoggedIn ? (
-                  <button 
-                    onClick={handleLogout} 
-                    className="w-full text-white hover:text-gray-400 transition duration-300 text-lg font-poppins py-3 text-left"
-                  >
-                    Sign Out
-                  </button>
-                ) : (
-                  <Link 
-                    to="/login" 
-                    className="w-full text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins py-3 text-left"
-                    onClick={handleLinkClick}
-                  >
-                    Sign In
-                  </Link>
-                )}
-              </div>
+      {/* Mobile Menu - Full Screen with smooth transition */}
+      <div className={`md:hidden fixed inset-0 z-50 bg-custom-blue transform transition-transform duration-300 ease-in-out ${navDrawerOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+      <TopBar />
+        {/* Header with logo, search and close button */}
+        <div className="flex justify-between items-center p-4 border-b border-gray-900">
+          <div className="text-2xl text-white font-extrabold tracking-tight">
+            <Link to="/" onClick={handleLinkClick}>Cargo Connect</Link>
+          </div>
+          <div className="flex items-center space-x-4">
+            <div className="text-white">
+              <SearchBar />
             </div>
+            <button 
+              onClick={toggleNavDrawer}
+              className="text-white focus:outline-none"
+            >
+              <HiXMark className="h-6 w-6" />
+            </button>
           </div>
         </div>
-      )}
+
+        {/* User section with Get Started button */}
+        <div className="flex justify-between items-center p-4 border-b border-gray-900">
+          <div className="flex items-center">
+            <HiOutlineUser className="h-6 w-6 text-custom-sage mr-2" />
+            <span className="text-white text-lg">
+              {isLoggedIn ? "My Account" : "Sign In"}
+            </span>
+          </div>
+          {!isLoggedIn && (
+            <Link 
+              to="/register" 
+              className="bg-custom-sage text-white px-4 py-2 rounded-lg font-medium"
+              onClick={handleLinkClick}
+            >
+              Get Started
+            </Link>
+          )}
+        </div>
+
+        {/* Menu items */}
+        <div className="p-4 overflow-y-auto h-[calc(100%-120px)]">
+          <div className="mb-2">
+            <div 
+              onClick={() => toggleSublinks("products")}
+              className="flex justify-between items-center text-white text-lg py-3 border-b border-gray-900 cursor-pointer"
+            >
+              <span>Products</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-200 ${expandedLink === "products" ? 'rotate-180' : ''}`}
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            {expandedLink === "products" && (
+              <div className="ml-4 mt-2 space-y-2">
+                <Link to="/products/item1" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Product 1</Link>
+                <Link to="/products/item2" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Product 2</Link>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <div 
+              onClick={() => toggleSublinks("businessHub")}
+              className="flex justify-between items-center text-white text-lg py-3 border-b border-gray-900 cursor-pointer"
+            >
+              <span>Business Hub</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-200 ${expandedLink === "businessHub" ? 'rotate-180' : ''}`}
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            {expandedLink === "businessHub" && (
+              <div className="ml-4 mt-2 space-y-2">
+                <Link to="/operator-login" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Business Login</Link>
+                <Link to="/trucking-page" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Trucking</Link>
+                <Link to="/courier-services" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Courier Services</Link>
+                <Link to="/ocean-freight" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Ocean Freight</Link>
+                <Link to="/warehousing" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Warehousing</Link>
+                <Link to="/freight-forwarders" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Freight Forwarders</Link>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <div 
+              onClick={() => toggleSublinks("resources")}
+              className="flex justify-between items-center text-white text-lg py-3 border-b border-gray-900 cursor-pointer"
+            >
+              <span>Resources</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-200 ${expandedLink === "resources" ? 'rotate-180' : ''}`}
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            {expandedLink === "resources" && (
+              <div className="ml-4 mt-2 space-y-2">
+                <Link to="/resources/docs" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>User Guides</Link>
+                <Link to="/blog" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Blog</Link>
+                <Link to="/weight-calculator" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Weight Calculator</Link>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <div 
+              onClick={() => toggleSublinks("company")}
+              className="flex justify-between items-center text-white text-lg py-3 border-b border-gray-900 cursor-pointer"
+            >
+              <span>Company</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-200 ${expandedLink === "company" ? 'rotate-180' : ''}`}
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            {expandedLink === "company" && (
+              <div className="ml-4 mt-2 space-y-2">
+                <Link to="/about-cargo-connect" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>About Us</Link>
+                <Link to="/contact-page" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Talk To An Expert</Link>
+                <Link to="/privacy-policy" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Privacy Policy</Link>
+                <Link to="/terms-and-conditions" className="block text-custom-sage text-lg py-2" onClick={handleLinkClick}>Terms & Conditions</Link>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <Link 
+              to="/pricing" 
+              className="block text-white text-lg py-3 border-b border-gray-900"
+              onClick={handleLinkClick}
+            >
+              Pricing
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
