@@ -141,7 +141,7 @@ const Home = () => {
       </div>
 
       {/* Right Text and Form */}
-<div className="w-full max-w-2xl mx-auto px-4 text-center flex flex-col items-center">
+<div className="w-full max-w-2xl mx-auto px-4 pr-8 text-center flex flex-col items-center">
   <h2 className="text-xl sm:text-2xl md:text-5xl font-poppins mb-4 sm:mb-6 text-gray-900 tracking-tight">
     Subscribe to Our Newsletter
   </h2>

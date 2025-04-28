@@ -13,7 +13,7 @@ const Topbar = () => {
             <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=FFFFFF" className="h-5 w-5" alt="Instagram"/>
           </a>
         </div>
-        <div className="text-xs sm:text-sm text-center flex-grow whitespace-nowrap">
+        <div className="text-xs sm:text-xs text-center flex-grow whitespace-nowrap">
   <span>Quick Quotes + Rapid Shipping = Worldwide Reach</span>
 </div>
 
