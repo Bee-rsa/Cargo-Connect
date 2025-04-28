@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Hero from "../components/Layout/Hero";
 import LogisticsFuture from "../components/Products/LogisticsFuture";
 import HowItWorks from "../components/Products/HowItWorks";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
 
 import image1 from "../assets/Screenshot_20241012_144049_Chrome.jpg";
 import image2 from "../assets/Screenshot_20241012_144052_Chrome.jpg";
@@ -180,27 +182,24 @@ const Home = () => {
       </div>
 
       {/* FAQ Section */}
-      <section className="p-6 bg-gray-300 mt-8 w-full">
+      <section className="p-6 bg-gray-100 mt-8 w-full">
         <h2 className="text-4xl font-bold text-custom-blue mb-4 text-left font-poppins">
           Frequently Asked Questions
         </h2>
         {faqData.map((faq, index) => (
           <div key={index} className="mb-4 pb-2">
             <h3
-              className="font-poppins text-l text-black-800 cursor-pointer flex justify-between items-center py-2 hover:bg-gray-400 transition duration-200"
+              className="font-poppins text-l text-black-800 cursor-pointer flex justify-between items-center py-2 hover:bg-gray-150 transition duration-200"
               onClick={() => toggleFAQ(index)}
             >
               {faq.question}
               <span className="ml-2 text-sm">
-                {activeFAQ === index ? (
-                  <i className="fas fa-chevron-up"></i>
-                ) : (
-                  <i className="fas fa-chevron-down"></i>
-                )}
-              </span>
+  {activeFAQ === index ? <FaChevronUp /> : <FaChevronDown />}
+</span>
+
             </h3>
             {activeFAQ === index && (
-              <p className="text-gray-700 mt-2 font-poppins">{faq.answer}</p>
+              <p className="text-custom-blue mt-2 font-poppins">{faq.answer}</p>
             )}
           </div>
         ))}
