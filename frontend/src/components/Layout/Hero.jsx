@@ -13,7 +13,7 @@ const Hero = () => {
 
       {/* Mobile Image - Half in/half out effect */}
       <div className="md:hidden w-full -mt-8 relative -mx-4 mb-6">
-        <div className="w-[100%] ml-[-30%]">
+      <div className="w-[100%] -translate-x-1/4">
           <img
             src={rightImage}
             alt="Freight Solutions"

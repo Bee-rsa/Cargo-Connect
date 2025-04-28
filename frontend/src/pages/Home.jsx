@@ -141,28 +141,28 @@ const Home = () => {
       </div>
 
       {/* Right Text and Form */}
-<div className="flex-2 text-center max-w-2xl mx-auto px-4">
-  <h2 className="text-sm md:text-5xl font-poppins  mb-6 text-gray-900 tracking-tight">
-  Subscribe to Our Newsletter
+<div className="w-full max-w-2xl mx-auto px-4 text-center flex flex-col items-center">
+  <h2 className="text-xl sm:text-2xl md:text-5xl font-poppins mb-4 sm:mb-6 text-gray-900 tracking-tight">
+    Subscribe to Our Newsletter
   </h2>
-  <p className="text-lg md:text-xl text-gray-600 mb-10 font-poppins leading-relaxed">
+  <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-10 font-poppins leading-relaxed">
     Get exclusive insights, industry trends, and Cargo Connect updates delivered straight to your inbox.
   </p>
   <form 
     onSubmit={handleSubscribe} 
-    className="flex flex-col md:flex-row items-stretch justify-center gap-3 max-w-lg mx-auto"
+    className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg"
   >
     <input
       type="email"
       placeholder="Enter your email address"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
-      className="flex-grow p-4 border border-gray-200 rounded-lg text-base font-poppins focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+      className="flex-grow w-full sm:w-auto p-4 border border-gray-200 rounded-lg text-base font-poppins focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
       required
     />
     <button
       type="submit"
-      className="bg-blue-600 hover:bg-blue-700 text-white font-poppins font-medium py-4 px-8 rounded-lg shadow-lg transition-colors duration-300"
+      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-poppins font-medium py-4 px-8 rounded-lg shadow-lg transition-colors duration-300"
     >
       Subscribe
     </button>
@@ -176,6 +176,7 @@ const Home = () => {
     </p>
   )}
 </div>
+
       </div>
 
       {/* FAQ Section */}

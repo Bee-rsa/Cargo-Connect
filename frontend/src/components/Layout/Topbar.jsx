@@ -13,9 +13,10 @@ const Topbar = () => {
             <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=FFFFFF" className="h-5 w-5" alt="Instagram"/>
           </a>
         </div>
-        <div className="text-sm text-center flex-grow">
-          <span>Quick Quotes + Rapid Shipping = Worldwide Reach</span>
-        </div>
+        <div className="text-xs sm:text-sm text-center flex-grow whitespace-nowrap">
+  <span>Quick Quotes + Rapid Shipping = Worldwide Reach</span>
+</div>
+
         <div className="text-sm hidden md:block">
           <a href="tel:+27324593387" className="hover:text-gray-300">
             +27 (32) 459-3387
