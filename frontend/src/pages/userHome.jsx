@@ -1,10 +1,8 @@
-import Header from "../userComponents/userHeader"; // Adjust the path as necessary
 import Searchbar from "../userComponents/SearchBar"; // Adjust the path as necessary
 
 const UserHome = () => {
     return (
-        <div className="w-full h-auto min-h-screen flex flex-col items-center bg-custom-blue p-6 pt-20">
-            <Header />
+        <div className="w-full h-auto min-h-screen -mt-0.5 flex flex-col items-center bg-custom-blue p-6 pt-20">
             <Searchbar />
 
             {/* Main Content with three containers */}

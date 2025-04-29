@@ -3,7 +3,6 @@ import { HiOutlineUser, HiBars3BottomRight, HiXMark } from "react-icons/hi2";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useAuthStore } from "../../store/authStore";
 import TopBar from "../Layout/Topbar";
 
 const Navbar = () => {
@@ -11,7 +10,6 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
   const [expandedLink, setExpandedLink] = useState(null);
   const { user } = useSelector((state) => state.auth);
-  const { isLoggedIn } = useAuthStore();
 
   const toggleNavDrawer = () => {
     setNavDrawerOpen(!navDrawerOpen);
@@ -182,18 +180,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <HiOutlineUser className="h-6 w-6 text-custom-sage mr-2" />
             <span className="text-white text-lg">
-              {isLoggedIn ? "My Account" : "Sign In"}
+              
             </span>
           </div>
-          {!isLoggedIn && (
-            <Link 
-              to="/register" 
-              className="bg-custom-sage text-white px-4 py-2 rounded-lg font-medium"
-              onClick={handleLinkClick}
-            >
-              Get Started
-            </Link>
-          )}
+
         </div>
 
         {/* Menu items */}

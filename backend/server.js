@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("WELCOME TO Cargo Connect!");
+  res.send("WELCOME TO RABBIT API!");
 });
 
 // API Routes

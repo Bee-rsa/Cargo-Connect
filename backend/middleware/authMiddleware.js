@@ -11,20 +11,12 @@ const protect = async (req, res, next) => {
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
-
-      // Check if the token is valid format
-      if (!token || token === "null" || token === "undefined") {
-        return res.status(401).json({ message: "Invalid token format" });
-      }
-
-      console.log("🔑 Token received:", token);
-
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       req.user = await User.findById(decoded.user.id).select("-password"); // Exclude password
       next();
     } catch (error) {
-      console.error("❌ Token verification failed:", error.message);
+      console.error("Token verification failed:", error);
       res.status(401).json({ message: "Not authorized, token failed" });
     }
   } else {

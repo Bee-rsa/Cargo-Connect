@@ -22,12 +22,7 @@ import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
 import Pricing from "./pages/Pricing";
 import UserLoginPage from "./pages/Login";
-import OperatorLoginPage from "./pages/operatorLoginPage";
-import EmailVerificationPage from "./pages/EmailVerificationPage";
-import OperatorEmailVerificationPage from "./pages/OperatorEmailVerificationPage";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import OperatorSignUpPage from "./pages/OperatorSignupPage";
+
 
 /* User Login */
 import UserHomePage from "./pages/userHome";
@@ -76,23 +71,16 @@ const App = () => {
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Home />} />
             <Route path="/login" element={<UserLoginPage />} />
-            <Route path="/operator-login-page" element={<OperatorLoginPage />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path='/verify-email' element={<EmailVerificationPage />} />
-            <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
-            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
-            <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
-            <Route path='/operator-register' element={<OperatorSignUpPage />} />
 
             <Route path="/user-home" element={
-              <ProtectedRoute role="customer">
-                <UserLayout />
-              </ProtectedRoute>
-            }>
-              <Route index element={<UserHomePage />} />
-            </Route>
+  <ProtectedRoute role="customer">
+    <UserHomePage />
+  </ProtectedRoute>
+} />
+
 
             {/* Company Pages */}
             <Route path="/about-cargo-connect" element={<AboutCargoConnect />} />
