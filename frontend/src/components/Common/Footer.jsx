@@ -17,14 +17,8 @@ const Footer = () => {
               <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Cargo Insurance</a></li>
               <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Customs Brokerage</a></li>
               <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Ocean Freight</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Air Freight</a></li>
               <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Less than Container</a></li>
               <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Buyer&apos;s Consolidation</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Trucking</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Order Management</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Booking Management</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">Climate</a></li>
-              <li><a href="#" className="hover:text-custom-sage transition-colors duration-200">eCommerce Fulfillment</a></li>
             </ul>
           </div>
 

@@ -33,7 +33,7 @@ const UserHome = () => {
                     </ul>
                 </div>
 
-                {/* Freightos Credit Container */}
+                {/* Credit Container */}
                 <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-1/3">
                     <h2 className="text-2xl font-semibold mb-4">Cargo Connect credit</h2>
                     <p className="text-gray-700 mb-4">
