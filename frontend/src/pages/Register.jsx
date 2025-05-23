@@ -61,7 +61,7 @@ const Register = () => {
         `}
       </style>
       {/* Left: Form section */}
-      <div className="w-full md:w-1/2 mt-16 mb-12 flex justify-center items-center px-6">
+      <div className="w-full md:w-1/2 mt-16 mb-12 flex justify-center items-center px-3 sm:px-4 md:px-4">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-gray-800 bg-opacity-50 backdrop-blur-lg text-white p-8 rounded-xl shadow-2xl"
@@ -118,7 +118,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full mt-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold transition duration-200"
+            className="w-full mt-4 py-2 bg-gradient-to-r from-blue-700 to-custom-blue rounded-lg text-white font-semibold transition duration-200"
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
