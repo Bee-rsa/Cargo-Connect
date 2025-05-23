@@ -77,7 +77,7 @@ const Register = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 rounded bg-gray-100 text-black"
+              className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Full Name"
             />
           </div>
@@ -87,7 +87,7 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 rounded bg-gray-100 text-black"
+              className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Email Address"
             />
           </div>
@@ -98,7 +98,7 @@ const Register = () => {
       type={showPassword ? "text" : "password"}
       value={password}
       onChange={(e) => setPassword(e.target.value)}
-      className="w-full p-2 pr-10 rounded bg-gray-100 text-black"
+      className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
       placeholder="Password"
     />
     <button
