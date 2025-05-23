@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Input from "../components/Input";
-import Navbar from "../components/Common/Navbar"; 
 import { ArrowLeft, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,6 @@ const ForgotPasswordPage = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-custom-blue via-blue-900 to-custom-blue">
-            <Navbar />
 
             <div className="flex items-center justify-center px-4 py-12 -mt-0.5">
                 <motion.div
