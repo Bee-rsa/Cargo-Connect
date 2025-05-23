@@ -22,6 +22,7 @@ import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
 import Pricing from "./pages/Pricing";
 import UserLoginPage from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPasswordPage";
 
 
 /* User Login */
@@ -74,6 +75,7 @@ const App = () => {
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             <Route path="/user-home" element={
   <ProtectedRoute role="customer">

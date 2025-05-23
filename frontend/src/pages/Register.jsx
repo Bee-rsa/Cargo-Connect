@@ -66,7 +66,9 @@ const Register = () => {
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-gray-800 bg-opacity-50 backdrop-blur-lg text-white p-8 rounded-xl shadow-2xl"
         >
-          <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-blue-700 to-blue-900 text-transparent bg-clip-text">Create Account</h2>
+          <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-blue-700 to-blue-900 text-transparent bg-clip-text">
+          Create An Account
+          </h2>
           <p className="text-center text-sm mb-6 text-gray-300">
             Shipping your cargo has never been easier
           </p>
