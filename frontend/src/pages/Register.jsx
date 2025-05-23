@@ -61,7 +61,7 @@ const Register = () => {
         `}
       </style>
       {/* Left: Form section */}
-      <div className="w-full md:w-1/2 mt-2 md:mt-16 mb-12 flex justify-center items-center px-3 sm:px-4 md:px-4">
+      <div className="w-full md:w-1/2 mt-4 md:mt-16 mb-12 flex justify-center items-center px-3 sm:px-4 md:px-4">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-gray-800 bg-opacity-50 backdrop-blur-lg text-white p-8 rounded-xl shadow-2xl"

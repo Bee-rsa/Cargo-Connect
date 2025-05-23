@@ -57,7 +57,7 @@ const Login = () => {
         `}
       </style>
 
-      <div className="flex w-full max-w-6xl font-poppins justify-center items-center flex-col md:flex-row gap-4 px-6 mt-2 md:mt-0">
+      <div className="flex w-full max-w-6xl font-poppins justify-center items-center flex-col md:flex-row gap-4 px-6 mt-4 md:mt-16">
         {/* Form Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
