@@ -89,7 +89,7 @@ const Navbar = () => {
         {/* User Info */}
         <div className="p-4 border-b border-gray-900">
           {/* User section with profile and icon */}
-<div className="flex justify-between items-center p-4 border-b border-gray-900">
+<div className="flex justify-between items-center p-2 border-b border-gray-900">
   {/* Left: Profile picture + name & email */}
   <div className="flex items-center space-x-4">
     <img

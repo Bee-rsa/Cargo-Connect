@@ -309,6 +309,19 @@ const SearchBar = () => {
             <p className="text-xs text-gray-500 mt-1 text-left">Tell us about your goods?</p>
           </div>
         </Link>
+
+        <Link to="/mode">
+          <div className="w-full px-4 py-3 bg-white text-black rounded-lg shadow cursor-pointer">
+            <input
+              type="text"
+              placeholder="Mode"
+              className="text-black w-full bg-white outline-none"
+              value={type && country ? `${type} in ${country}` : 'Mode'}
+              readOnly // prevents keyboard input
+            />
+            <p className="text-xs text-gray-500 mt-1 text-left">How would you like to transport your goods?</p>
+          </div>
+        </Link>
           
           
           <button className="w-full px-4 py-3 bg-blue-500 text-white rounded-md font-semibold flex items-center justify-center">
