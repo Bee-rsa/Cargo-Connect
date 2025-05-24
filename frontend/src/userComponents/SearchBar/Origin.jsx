@@ -248,7 +248,26 @@ const Origin = () => {
             Address
           </button>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-200"></div>
+      <div className="relative w-full h-1 mt-1">
+  {/* Background Line */}
+  <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-full" />
+  
+  {/* Progress Line */}
+  <div
+    className="absolute bottom-0  left-0 h-1 rounded-full"
+    style={{
+      backgroundColor: customBlue,
+      width:
+        activeTab === 'originType'
+          ? '33.33%'
+          : activeTab === 'world'
+          ? '66.66%'
+          : '100%',
+      transition: 'width 0.3s ease-in-out',
+    }}
+  />
+</div>
+
       </div>
 
       <div className="flex-grow overflow-auto">{renderContent()}</div>
