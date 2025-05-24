@@ -2,7 +2,10 @@ import Searchbar from "../userComponents/SearchBar"; // Adjust the path as neces
 
 const UserHome = () => {
     return (
-        <div className="w-full h-auto min-h-screen -mt-0.5 flex flex-col items-center bg-custom-blue p-6 pt-20">
+       <div
+  className="w-full h-auto min-h-screen -mt-0.5 flex flex-col items-center p-6 pt-20"
+  style={{ backgroundImage: "linear-gradient(180deg, #000042 10%, #5185AB 100%)" }}
+>
             <Searchbar />
 
             {/* Main Content with three containers */}

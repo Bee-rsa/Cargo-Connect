@@ -70,7 +70,7 @@ const Register = () => {
           Create An Account
           </h2>
           <p className="text-center text-sm mb-6 text-gray-300">
-            Shipping your cargo has never been easier
+            Transportation of Cargo made Easier
           </p>
 
           <div className="mb-4">
