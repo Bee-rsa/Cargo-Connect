@@ -13,7 +13,7 @@ const UserHome = () => {
 </div>
 
             {/* Main Content with three containers */}
-            <div className="flex flex-col md:flex-row justify-around w-full max-w-6xl mt-24 space-y-8 md:space-y-0 md:space-x-12">
+            <div className="flex flex-col md:flex-row justify-around px-6 w-full max-w-6xl mt-24 space-y-8 md:space-y-0 md:space-x-12">
                 {/* Manage Shipments Container */}
                 <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-1/3">
                     <h2 className="text-2xl font-semibold mb-4">Manage your shipments</h2>
