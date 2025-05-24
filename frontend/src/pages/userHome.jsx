@@ -1,4 +1,5 @@
 import Searchbar from "../userComponents/SearchBar"; // Adjust the path as necessary
+import UserNavbar from "../components/Common/userNavbar"
 
 const UserHome = () => {
     return (
@@ -6,7 +7,11 @@ const UserHome = () => {
   className="w-full h-auto min-h-screen -mt-0.5 flex flex-col items-center p-2 pt-20"
   style={{ backgroundImage: "linear-gradient(180deg, #000042 10%, #5185AB 100%)" }}
 >
-            <Searchbar />
+            <UserNavbar />
+            <UserNavbar />
+            <div className="mt-6 sm:mt-10 md:mt-16 w-full">
+  <Searchbar />
+</div>
 
             {/* Main Content with three containers */}
             <div className="flex flex-col md:flex-row justify-around w-full max-w-6xl mt-24 space-y-8 md:space-y-0 md:space-x-12">
