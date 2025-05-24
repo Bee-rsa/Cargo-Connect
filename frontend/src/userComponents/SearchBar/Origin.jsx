@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 const customBlue = '#2563EB'; // Tailwind custom blue
 
-// Icon URLs
 const icons = {
   world: 'https://img.icons8.com/?size=100&id=3685&format=png&color=000000',
   port: 'https://img.icons8.com/?size=100&id=WZJSvqLGKd2q&format=png&color=000000',
@@ -17,8 +16,9 @@ const Origin = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('originType');
   const [selectedOriginType, setSelectedOriginType] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [address, setAddress] = useState('');
 
-  // Updated Countries (Alphabetical, with placeholders for flags)
   const countries = [
     { name: 'Botswana', flag: 'https://flagcdn.com/bw.svg' },
     { name: 'Lesotho', flag: 'https://flagcdn.com/ls.svg' },
@@ -35,6 +35,26 @@ const Origin = () => {
     { label: 'Residential address', icon: icons.residential },
   ];
 
+  const handleOriginTypeSelect = (label) => {
+    setSelectedOriginType(label);
+    setActiveTab('world');
+  };
+
+  const handleCountrySelect = (name) => {
+    setSelectedCountry(name);
+    setActiveTab('address');
+  };
+
+  const handleDone = () => {
+    console.log({
+      originType: selectedOriginType,
+      country: selectedCountry,
+      address,
+    });
+    // Navigate or submit logic here
+    navigate('/user-home');
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'originType':
@@ -45,7 +65,7 @@ const Origin = () => {
               {options.map(({ label, icon }) => (
                 <button
                   key={label}
-                  onClick={() => setSelectedOriginType(label)}
+                  onClick={() => handleOriginTypeSelect(label)}
                   className={`flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left ${
                     selectedOriginType === label
                       ? `border-[${customBlue}]`
@@ -81,11 +101,9 @@ const Origin = () => {
                 </button>
               ))}
             </div>
-            {selectedOriginType && (
-              <p className="mt-3 text-sm text-gray-600">Selected: {selectedOriginType}</p>
-            )}
           </>
         );
+
       case 'world':
         return (
           <div className="mt-4 text-gray-700">
@@ -93,29 +111,58 @@ const Origin = () => {
             <input
               type="text"
               placeholder="Enter Country Name"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
-            <ul className="max-h-48 overflow-auto">
+            <ul className="max-h-96 overflow-auto">
               {countries.map(({ name, flag }, index) => (
-                <li key={name} className="pb-2">
+                <li key={name} className="pb-2 cursor-pointer" onClick={() => handleCountrySelect(name)}>
+                  {name === 'Botswana' && <hr className="border-gray-300 mb-2" />}
                   <div className="flex items-center space-x-3 mb-2">
-                    <img src={flag} alt={`${name} flag`} className="w-6 h-4 object-cover rounded-sm border" />
+                    <img
+                      src={flag}
+                      alt={`${name} flag`}
+                      className="w-6 h-6 object-cover rounded-full border"
+                    />
                     <span>{name}</span>
                   </div>
-                  {index < countries.length - 1 && <hr className="border-gray-300" />}
+                  {name === 'Zimbabwe' && <hr className="border-gray-300 mt-2" />}
+                  {index < countries.length - 1 && name !== 'Zimbabwe' && <hr className="border-gray-300" />}
                 </li>
               ))}
             </ul>
           </div>
         );
+
       case 'address':
         return (
           <div className="mt-4 text-gray-700">
-            <p>Please enter your address details here.</p>
+            <h2 className="text-lg font-semibold mb-2">Address</h2>
+            <div className="flex items-center space-x-3 mb-3">
+              <img
+                src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000"
+                alt="Address Icon"
+                className="w-6 h-6"
+              />
+              <p className="text-sm text-gray-600">Enter address of collection:</p>
+            </div>
+            <input
+              type="text"
+              placeholder="e.g. 123 Main St, Johannesburg"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            />
+
+            {address && (
+              <button
+                onClick={handleDone}
+                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+              >
+                Done
+              </button>
+            )}
           </div>
         );
-      default:
-        return null;
     }
   };
 
