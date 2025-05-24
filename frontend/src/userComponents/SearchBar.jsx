@@ -81,7 +81,7 @@ const SearchBar = () => {
         </div>
 
         {/* Mobile Title/Subtitle - subtitle in container */}
-        <div className="sm:hidden -mt-10 w-full text-center mb-4">
+        <div className="sm:hidden mt-8 w-full text-center mb-4">
           <div className="p-2 rounded-lg shadow">
             <h1 className="text-xl text-custom-sage font-bold">
               Where would you like to ship?
