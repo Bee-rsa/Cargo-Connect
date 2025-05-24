@@ -168,7 +168,7 @@ const Origin = () => {
             {address && (
               <button
                 onClick={handleDone}
-                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+                className="mt-4 w-full bg-gradient-to-r from-blue-700 to-custom-blue text-white py-2 rounded-md hover:bg-blue-700 transition"
               >
                 Done
               </button>
@@ -256,7 +256,7 @@ const Origin = () => {
   <div
     className="absolute bottom-0  left-0 h-1 rounded-full"
     style={{
-      backgroundColor: customBlue,
+      backgroundColor: "#1e3a8a",
       width:
         activeTab === 'originType'
           ? '33.33%'

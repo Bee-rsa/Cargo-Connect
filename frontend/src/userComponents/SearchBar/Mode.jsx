@@ -102,7 +102,7 @@ const Mode = () => {
       {selectedOriginType && (
         <button
           onClick={handleDone}
-          className="mt-6 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+          className="mt-6 w-full bg-gradient-to-r from-blue-700 to-custom-blue text-white py-2 rounded-md hover:bg-blue-700 transition"
         >
           Done
         </button>

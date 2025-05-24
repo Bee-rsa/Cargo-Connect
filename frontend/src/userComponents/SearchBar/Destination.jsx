@@ -61,6 +61,20 @@ const Destination = () => {
     c.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const getProgressWidth = () => {
+  switch (activeTab) {
+    case 'destinationType':
+      return '33.33%';
+    case 'world':
+      return '66.66%';
+    case 'address':
+      return '100%';
+    default:
+      return '0%';
+  }
+};
+
+
   const renderContent = () => {
     switch (activeTab) {
       case 'destinationType':
@@ -169,7 +183,7 @@ const Destination = () => {
             {address && (
               <button
                 onClick={handleDone}
-                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+                className="mt-4 w-full bg-gradient-to-r from-blue-700 to-custom-blue text-white py-2 rounded-md hover:bg-blue-700 transition"
               >
                 Done
               </button>
@@ -251,22 +265,16 @@ const Destination = () => {
             Address
           </button>
         </div>
-        <div className="relative w-full h-1 mt-1">
+<div className="relative w-full h-1 mt-1">
   {/* Background Line */}
   <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-full" />
   
   {/* Progress Line */}
   <div
-    className="absolute bottom-0 left-0 h-1 rounded-full"
-    style={{
-      backgroundColor: customBlue,
-      width:
-        activeTab === 'originType'
-          ? '33.33%'
-          : activeTab === 'world'
-          ? '66.66%'
-          : '100%',
-      transition: 'width 0.3s ease-in-out',
+  className="absolute bottom-0 left-0 h-1 rounded-full"
+  style={{
+    backgroundColor: "#1e3a8a",
+    width: getProgressWidth(),
     }}
   />
 </div>
