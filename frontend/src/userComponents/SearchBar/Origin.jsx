@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import AddressAutocomplete from '../../components/Autocomplete';
 
 const customBlue = '#000042'; // Tailwind custom blue
 
@@ -148,32 +149,20 @@ const Origin = () => {
       case 'address':
         return (
           <div className="mt-4 text-gray-700">
-            <h2 className="text-sm font-medium text-gray-700 mt-4 mb-2">Address</h2>
-            <div className="flex items-center space-x-3 mb-3">
-              <img
-                src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000"
-                alt="Address Icon"
-                className="w-6 h-6"
-              />
-              <p className="text-sm text-gray-600">Enter address of collection:</p>
-            </div>
-            <input
-              type="text"
-              placeholder="e.g. 123 Main St, Johannesburg"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-            />
+  <AddressAutocomplete 
+    value={address} 
+    onChange={setAddress} 
+  />
 
-            {address && (
-              <button
-                onClick={handleDone}
-                className="mt-4 w-full bg-gradient-to-r from-blue-700 to-custom-blue text-white py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Done
-              </button>
-            )}
-          </div>
+  {address && (
+    <button
+      onClick={handleDone}
+      className="mt-4 w-full bg-gradient-to-r from-blue-700 to-custom-blue text-white py-2 rounded-md hover:bg-blue-700 transition"
+    >
+      Done
+    </button>
+  )}
+</div>
         );
     }
   };
