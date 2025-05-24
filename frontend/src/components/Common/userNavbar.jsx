@@ -136,7 +136,7 @@ const Navbar = () => {
             </li>
             <li className="flex text-xl items-center mt-6 p-3 space-x-3">
               <FaQuestionCircle className="text-white -mt-0.5 w-8 h-8" />
-              <Link to="/help" onClick={handleLinkClick}>Help Center</Link>
+              <Link to="/help-center" onClick={handleLinkClick}>Help Center</Link>
             </li>
             <li className="flex text-xl items-center mt-6 p-3 space-x-3">
               <button
