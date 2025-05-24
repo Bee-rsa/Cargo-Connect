@@ -27,6 +27,7 @@ import ForgotPassword from "./pages/ForgotPasswordPage";
 
 /* User Login */
 import UserHomePage from "./pages/userHome";
+import Origin from "./userComponents/SearchBar/Origin";
 
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
@@ -76,6 +77,7 @@ const App = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/origin" element={<Origin />} />
 
             <Route path="/user-home" element={
   <ProtectedRoute role="customer">

@@ -4,19 +4,20 @@ import Header from "../Common/Header";
 
 const UserLayout = () => {
   const location = useLocation();
-  const hideFooterRoutes = ["/user-home"];
+  const hideFooterRoutes = ["/user-home", "/origin"];
+  const hideHeaderRoutes = ["/origin"]; // Add any others if needed
 
   return (
     <>
-      {/* Header */}
-      <Header />
+      {/* Conditionally render Header */}
+      {!hideHeaderRoutes.includes(location.pathname) && <Header />}
 
       {/* Main content */}
       <main>
         <Outlet />
       </main>
 
-      {/* Footer: Hide on specific routes */}
+      {/* Conditionally render Footer */}
       {!hideFooterRoutes.includes(location.pathname) && <Footer />}
     </>
   );
