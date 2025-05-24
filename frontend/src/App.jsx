@@ -29,7 +29,8 @@ import ForgotPassword from "./pages/ForgotPasswordPage";
 import UserHomePage from "./pages/userHome";
 import Origin from "./userComponents/SearchBar/Origin";
 import Destination from "./userComponents/SearchBar/Destination";
-import Mode from "./userComponents/SearchBar/Mode"
+import Mode from "./userComponents/SearchBar/Mode";
+import Load from "./userComponents/SearchBar/Load";
 
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
@@ -82,6 +83,7 @@ const App = () => {
             <Route path="/origin" element={<Origin />} />
             <Route path="/destination" element={<Destination />} />
             <Route path="/mode" element={<Mode />} />
+            <Route path="/load" element={<Load />} />
 
             <Route path="/user-home" element={
   <ProtectedRoute role="customer">

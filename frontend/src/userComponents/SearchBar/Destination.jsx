@@ -266,7 +266,7 @@ const Destination = () => {
     width: getProgressWidth(),
     }}
   />
-</div>
+    </div>
 
       </div>
 
