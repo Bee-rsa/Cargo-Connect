@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const customBlue = '#2563EB'; // Tailwind custom blue
+const customBlue = '#000042'; // Tailwind custom blue
 
 const icons = {
   world: 'https://img.icons8.com/?size=100&id=3685&format=png&color=000000',
@@ -15,8 +15,8 @@ const icons = {
 
 const Destination = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('originType');
-  const [selectedOriginType, setSelectedOriginType] = useState(null);
+  const [activeTab, setActiveTab] = useState('destinationType');
+  const [selectedDestinationType, setSelectedDestinationType] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [address, setAddress] = useState('');
@@ -38,8 +38,8 @@ const Destination = () => {
     { label: 'Fulfillment Centre', icon: icons.fulfillment },
   ];
 
-  const handleOriginTypeSelect = (label) => {
-    setSelectedOriginType(label);
+  const handleDestinationTypeSelect = (label) => {
+    setSelectedDestinationType(label);
     setActiveTab('world');
   };
 
@@ -50,7 +50,7 @@ const Destination = () => {
 
   const handleDone = () => {
     console.log({
-      originType: selectedOriginType,
+      destinationType: selectedDestinationType,
       country: selectedCountry,
       address,
     });
@@ -63,7 +63,7 @@ const Destination = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'originType':
+      case 'destinationType':
         return (
           <>
             <p className="text-sm font-medium text-gray-700 mt-4 mb-2">Select type</p>
@@ -71,14 +71,14 @@ const Destination = () => {
               {options.map(({ label, icon }) => (
                 <button
                   key={label}
-                  onClick={() => handleOriginTypeSelect(label)}
+                  onClick={() => handleDestinationTypeSelect(label)}
                   className={`flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left ${
-                    selectedOriginType === label
+                    selectedDestinationType === label
                       ? `border-[${customBlue}]`
                       : 'border-gray-300'
                   } hover:border-[${customBlue}]`}
                   style={{
-                    borderColor: selectedOriginType === label ? customBlue : undefined,
+                    borderColor: selectedDestinationType === label ? customBlue : undefined,
                     cursor: 'pointer',
                     backgroundColor: 'white',
                   }}
@@ -86,10 +86,10 @@ const Destination = () => {
                   <span
                     className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
                     style={{
-                      borderColor: selectedOriginType === label ? customBlue : '#d1d5db',
+                      borderColor: selectedDestinationType === label ? customBlue : '#d1d5db',
                     }}
                   >
-                    {selectedOriginType === label && (
+                    {selectedDestinationType === label && (
                       <span
                         className="rounded-full"
                         style={{
@@ -156,7 +156,7 @@ const Destination = () => {
                 alt="Address Icon"
                 className="w-6 h-6"
               />
-              <p className="text-sm text-gray-600">Enter address of collection:</p>
+              <p className="text-sm text-gray-600">Enter address of delivery:</p>
             </div>
             <input
               type="text"
@@ -176,13 +176,15 @@ const Destination = () => {
             )}
           </div>
         );
+      default:
+        return null;
     }
   };
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white min-h-screen flex flex-col sm:hidden">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl text-gray-800">Origin</h1>
+        <h1 className="text-xl text-gray-800">Destination</h1>
         <button
           aria-label="Close"
           onClick={() => navigate('/user-home')}
@@ -192,17 +194,33 @@ const Destination = () => {
         </button>
       </div>
 
-      <p className="text-gray-600">Where are you shipping from?</p>
+      <p className="text-gray-600">Where are you shipping to?</p>
 
       <div className="relative mt-3">
         <div className="flex items-center space-x-2 pb-2">
-          <button
-            onClick={() => setActiveTab('originType')}
-            style={{ color: activeTab === 'originType' ? customBlue : 'black' }}
-            className="text-m"
-          >
-            Origin Type
-          </button>
+          {selectedDestinationType ? (
+  <button
+    onClick={() => setActiveTab('destinationType')}
+    style={{ color: customBlue }}
+    className="text-sm flex items-center space-x-2"
+  >
+    <img
+      src={options.find((opt) => opt.label === selectedDestinationType)?.icon}
+      alt={`${selectedDestinationType} icon`}
+      className="inline w-5 h-5"
+    />
+    <span>{selectedDestinationType}</span>
+  </button>
+) : (
+  <button
+    onClick={() => setActiveTab('destinationType')}
+    style={{ color: activeTab === 'destinationType' ? customBlue : 'black' }}
+    className="text-sm"
+  >
+    Destination Type
+  </button>
+)}
+
 
           <span className="text-gray-400">{'>'}</span>
 
@@ -211,18 +229,17 @@ const Destination = () => {
             style={{ color: activeTab === 'world' ? customBlue : 'black' }}
             className="text-m font-medium"
             aria-label="World tab"
-            >
+          >
             {selectedCountry ? (
-                <img
+              <img
                 src={countries.find((c) => c.name === selectedCountry)?.flag}
                 alt={`${selectedCountry} flag`}
                 className="inline w-6 h-6 "
-                />
+              />
             ) : (
-                <img src={icons.world} alt="World icon" className="inline w-6 h-6" />
+              <img src={icons.world} alt="World icon" className="inline w-6 h-6" />
             )}
-            </button>
-
+          </button>
 
           <span className="text-gray-400">{'>'}</span>
 

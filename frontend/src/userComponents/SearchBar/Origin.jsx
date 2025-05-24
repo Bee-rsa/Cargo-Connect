@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const customBlue = '#2563EB'; // Tailwind custom blue
+const customBlue = '#000042'; // Tailwind custom blue
 
 const icons = {
   world: 'https://img.icons8.com/?size=100&id=3685&format=png&color=000000',
@@ -19,6 +19,7 @@ const Origin = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [address, setAddress] = useState('');
+
 
   const countries = [
     { name: 'Botswana', flag: 'https://flagcdn.com/bw.svg' },
@@ -194,13 +195,28 @@ const Origin = () => {
 
       <div className="relative mt-3">
         <div className="flex items-center space-x-2 pb-2">
-          <button
-            onClick={() => setActiveTab('originType')}
-            style={{ color: activeTab === 'originType' ? customBlue : 'black' }}
-            className="text-m"
-          >
-            Origin Type
-          </button>
+          {selectedOriginType ? (
+  <button
+    onClick={() => setActiveTab('originType')}
+    style={{ color: customBlue }}
+    className="text-sm flex items-center space-x-2"
+  >
+    <img
+      src={options.find((opt) => opt.label === selectedOriginType)?.icon}
+      alt={`${selectedOriginType} icon`}
+      className="inline w-5 h-5"
+    />
+    <span>{selectedOriginType}</span>
+  </button>
+) : (
+  <button
+    onClick={() => setActiveTab('originType')}
+    style={{ color: activeTab === 'originType' ? customBlue : 'black' }}
+    className="text-sm"
+  >
+    Origin Type
+  </button>
+)}
 
           <span className="text-gray-400">{'>'}</span>
 
@@ -227,7 +243,7 @@ const Origin = () => {
           <button
             onClick={() => setActiveTab('address')}
             style={{ color: activeTab === 'address' ? customBlue : 'black' }}
-            className="text-m"
+            className="text-sm"
           >
             Address
           </button>
