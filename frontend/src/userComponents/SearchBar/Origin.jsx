@@ -18,6 +18,16 @@ const Origin = () => {
   const [activeTab, setActiveTab] = useState('originType');
   const [selectedOriginType, setSelectedOriginType] = useState(null);
 
+  // Updated Countries (Alphabetical, with placeholders for flags)
+  const countries = [
+    { name: 'Botswana', flag: 'https://flagcdn.com/bw.svg' },
+    { name: 'Lesotho', flag: 'https://flagcdn.com/ls.svg' },
+    { name: 'Mozambique', flag: 'https://flagcdn.com/mz.svg' },
+    { name: 'Namibia', flag: 'https://flagcdn.com/na.svg' },
+    { name: 'South Africa', flag: 'https://flagcdn.com/za.svg' },
+    { name: 'Zimbabwe', flag: 'https://flagcdn.com/zw.svg' },
+  ];
+
   const options = [
     { label: 'Port/Airport', icon: icons.port },
     { label: 'Factory/Warehouse', icon: icons.warehouse },
@@ -36,25 +46,21 @@ const Origin = () => {
                 <button
                   key={label}
                   onClick={() => setSelectedOriginType(label)}
-                  className={`flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left
-                    ${
-                      selectedOriginType === label
-                        ? `border-[${customBlue}]`
-                        : 'border-gray-300'
-                    }
-                    hover:border-[${customBlue}]
-                  `}
+                  className={`flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left ${
+                    selectedOriginType === label
+                      ? `border-[${customBlue}]`
+                      : 'border-gray-300'
+                  } hover:border-[${customBlue}]`}
                   style={{
                     borderColor: selectedOriginType === label ? customBlue : undefined,
                     cursor: 'pointer',
                     backgroundColor: 'white',
                   }}
                 >
-                  {/* Circle with small dot if selected */}
                   <span
                     className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
                     style={{
-                      borderColor: selectedOriginType === label ? customBlue : '#d1d5db', // gray-300
+                      borderColor: selectedOriginType === label ? customBlue : '#d1d5db',
                     }}
                   >
                     {selectedOriginType === label && (
@@ -68,7 +74,6 @@ const Origin = () => {
                       />
                     )}
                   </span>
-                  {/* Icon + Label */}
                   <span className="text-gray-700 flex gap-2 items-center space-x-2">
                     <img src={icon} alt={`${label} icon`} className="w-6 h-6" />
                     <span>{label}</span>
@@ -83,13 +88,24 @@ const Origin = () => {
         );
       case 'world':
         return (
-          <div className="mt-4 text-gray-700 flex items-center space-x-2">
-            <img
-              src={icons.world}
-              alt="World icon"
-              className="w-6 h-6"
+          <div className="mt-4 text-gray-700">
+            <h2 className="text-lg font-semibold mb-2">Country</h2>
+            <input
+              type="text"
+              placeholder="Enter Country Name"
+              className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <p>World tab content goes here.</p>
+            <ul className="max-h-48 overflow-auto">
+              {countries.map(({ name, flag }, index) => (
+                <li key={name} className="pb-2">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <img src={flag} alt={`${name} flag`} className="w-6 h-4 object-cover rounded-sm border" />
+                    <span>{name}</span>
+                  </div>
+                  {index < countries.length - 1 && <hr className="border-gray-300" />}
+                </li>
+              ))}
+            </ul>
           </div>
         );
       case 'address':
@@ -105,7 +121,6 @@ const Origin = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white min-h-screen flex flex-col sm:hidden">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-xl text-gray-800">Origin</h1>
         <button
@@ -117,10 +132,8 @@ const Origin = () => {
         </button>
       </div>
 
-      {/* Subheading */}
       <p className="text-gray-600">Where are you shipping from?</p>
 
-      {/* Breadcrumb tabs with underline */}
       <div className="relative mt-3">
         <div className="flex items-center space-x-2 pb-2">
           <button
@@ -155,7 +168,6 @@ const Origin = () => {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-200"></div>
       </div>
 
-      {/* Content */}
       <div className="flex-grow overflow-auto">{renderContent()}</div>
     </div>
   );
