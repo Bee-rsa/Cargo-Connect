@@ -17,6 +17,7 @@ const Origin = () => {
   const [activeTab, setActiveTab] = useState('originType');
   const [selectedOriginType, setSelectedOriginType] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [address, setAddress] = useState('');
 
   const countries = [
@@ -51,9 +52,12 @@ const Origin = () => {
       country: selectedCountry,
       address,
     });
-    // Navigate or submit logic here
     navigate('/user-home');
   };
+
+  const filteredCountries = countries.filter((c) =>
+    c.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderContent = () => {
     switch (activeTab) {
@@ -107,17 +111,19 @@ const Origin = () => {
       case 'world':
         return (
           <div className="mt-4 text-gray-700">
-            <h2 className="text-lg font-semibold mb-2">Country</h2>
+            <h2 className="text-sm font-medium text-gray-700 mt-4 mb-2">Country</h2>
             <input
               type="text"
               placeholder="Enter Country Name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
             <ul className="max-h-96 overflow-auto">
-              {countries.map(({ name, flag }, index) => (
+              {filteredCountries.map(({ name, flag }, index) => (
                 <li key={name} className="pb-2 cursor-pointer" onClick={() => handleCountrySelect(name)}>
                   {name === 'Botswana' && <hr className="border-gray-300 mb-2" />}
-                  <div className="flex items-center space-x-3 mb-2">
+                  <div className="flex items-center space-x-3 py-2 mb-2">
                     <img
                       src={flag}
                       alt={`${name} flag`}
@@ -126,9 +132,14 @@ const Origin = () => {
                     <span>{name}</span>
                   </div>
                   {name === 'Zimbabwe' && <hr className="border-gray-300 mt-2" />}
-                  {index < countries.length - 1 && name !== 'Zimbabwe' && <hr className="border-gray-300" />}
+                  {index < filteredCountries.length - 1 && name !== 'Zimbabwe' && (
+                    <hr className="border-gray-300" />
+                  )}
                 </li>
               ))}
+              {filteredCountries.length === 0 && (
+                <p className="text-sm text-gray-500">No country found.</p>
+              )}
             </ul>
           </div>
         );
@@ -136,7 +147,7 @@ const Origin = () => {
       case 'address':
         return (
           <div className="mt-4 text-gray-700">
-            <h2 className="text-lg font-semibold mb-2">Address</h2>
+            <h2 className="text-sm font-medium text-gray-700 mt-4 mb-2">Address</h2>
             <div className="flex items-center space-x-3 mb-3">
               <img
                 src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000"
@@ -198,9 +209,18 @@ const Origin = () => {
             style={{ color: activeTab === 'world' ? customBlue : 'black' }}
             className="text-m font-medium"
             aria-label="World tab"
-          >
-            <img src={icons.world} alt="World icon" className="inline w-6 h-6" />
-          </button>
+            >
+            {selectedCountry ? (
+                <img
+                src={countries.find((c) => c.name === selectedCountry)?.flag}
+                alt={`${selectedCountry} flag`}
+                className="inline w-6 h-6 "
+                />
+            ) : (
+                <img src={icons.world} alt="World icon" className="inline w-6 h-6" />
+            )}
+            </button>
+
 
           <span className="text-gray-400">{'>'}</span>
 
