@@ -68,7 +68,7 @@ const TermsAndConditionsTender = () => {
 
           <button
             onClick={handleContinue}
-            className={`mt-4 px-6 py-2 rounded-md text-white ${
+            className={`mt-4 w-full px-6 py-2 rounded-md text-white ${
               accepted
                 ? "bg-blue-950 hover:bg-custom-blue"
                 : "bg-gray-400 cursor-not-allowed"

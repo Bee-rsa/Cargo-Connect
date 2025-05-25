@@ -1,8 +1,69 @@
 import { useState } from "react";
 import UserNavbar from "../../components/Common/userNavbar";
+import Select from "react-select";
+
+// Country options with flag images
+const countryOptions = [
+  {
+    value: "BW",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/bw.png" alt="BW" className="w-5 h-4" />
+        Botswana
+      </div>
+    ),
+  },
+  {
+    value: "LS",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/ls.png" alt="LS" className="w-5 h-4" />
+        Lesotho
+      </div>
+    ),
+  },
+  {
+    value: "MZ",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/mz.png" alt="MZ" className="w-5 h-4" />
+        Mozambique
+      </div>
+    ),
+  },
+  {
+    value: "NA",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/na.png" alt="NA" className="w-5 h-4" />
+        Namibia
+      </div>
+    ),
+  },
+  {
+    value: "ZA",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/za.png" alt="ZA" className="w-5 h-4" />
+        South Africa
+      </div>
+    ),
+  },
+  {
+    value: "ZW",
+    label: (
+      <div className="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/zw.png" alt="ZW" className="w-5 h-4" />
+        Zimbabwe
+      </div>
+    ),
+  },
+];
 
 const Tenders = () => {
   const [deliveryLocations, setDeliveryLocations] = useState([""]);
+  const [country, setCountry] = useState(null);
+
   const handleAddDelivery = () => setDeliveryLocations([...deliveryLocations, ""]);
   const handleRemoveDelivery = (index) => {
     const newLocations = [...deliveryLocations];
@@ -17,12 +78,25 @@ const Tenders = () => {
 
   return (
     <form className="max-w-4xl mx-auto p-6 bg-white shadow-md mt-8 rounded-lg space-y-6">
-    <UserNavbar />
-      <h2 className="text-2xl font-semibold">Transportation Tender Submission</h2>
+      <UserNavbar />
+      <h2 className="text-xl font-semibold">Transportation Tender Submission</h2>
 
       {/* 1. Company Information */}
       <section>
         <h3 className="text-xl font-medium mb-2">1. Company Information</h3>
+        {/* Country of Business Dropdown */}
+        <div className="mt-4 mb-4">
+          <Select
+            options={countryOptions}
+            value={country}
+            onChange={setCountry}
+            placeholder="Select country of Business"
+            className="text-m"
+            formatOptionLabel={(countryOption) => (
+              <div className="flex items-center gap-2">{countryOption.label}</div>
+            )}
+          />
+        </div>
         <input type="text" placeholder="Registered Company Name" className="input" />
         <input type="text" placeholder="Company Registration Number" className="input" />
         <input type="text" placeholder="VAT Number / Tax ID" className="input" />
@@ -31,6 +105,7 @@ const Tenders = () => {
         <input type="text" placeholder="Freight License / Accreditation" className="input" />
         <input type="url" placeholder="Company Website" className="input" />
         <input type="text" placeholder="Insurance Coverage Details" className="input" />
+
       </section>
 
       {/* 2. Contact Information */}
