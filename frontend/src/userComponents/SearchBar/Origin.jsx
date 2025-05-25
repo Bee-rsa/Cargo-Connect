@@ -32,7 +32,7 @@ const Origin = () => {
   ];
 
   const options = [
-    { label: 'Port/Airport', icon: icons.port },
+    { label: 'Port or Airport', icon: icons.port },
     { label: 'Factory/Warehouse', icon: icons.warehouse },
     { label: 'Business Address', icon: icons.business },
     { label: 'Residential address', icon: icons.residential },
