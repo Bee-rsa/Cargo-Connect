@@ -4,8 +4,10 @@ import Header from "../Common/Header";
 
 const UserLayout = () => {
   const location = useLocation();
-  const hideFooterRoutes = ["/user-home", "/origin", "/destination", "/mode", "/profile", "/load", "/goods", "/tenders"];
-  const hideHeaderRoutes = ["/user-home","/origin", "/destination", "/mode", "/profile", "/load", "/goods", "/tenders"]; 
+  const hideFooterRoutes = ["/user-home", "/origin", "/destination", "/mode", 
+    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders"];
+  const hideHeaderRoutes = ["/user-home","/origin", "/destination", "/mode", 
+    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders"]; 
 
   return (
     <>

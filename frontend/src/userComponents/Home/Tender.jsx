@@ -1,125 +1,160 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import UserNavbar from "../../components/Common/userNavbar";
-import { FiCheckCircle, FiClipboard, FiDollarSign, FiUsers, FiCalendar, FiPackage } from "react-icons/fi";
 
-const TenderPage = () => {
+const Tenders = () => {
+  const [deliveryLocations, setDeliveryLocations] = useState([""]);
+  const handleAddDelivery = () => setDeliveryLocations([...deliveryLocations, ""]);
+  const handleRemoveDelivery = (index) => {
+    const newLocations = [...deliveryLocations];
+    newLocations.splice(index, 1);
+    setDeliveryLocations(newLocations);
+  };
+  const handleDeliveryChange = (index, value) => {
+    const newLocations = [...deliveryLocations];
+    newLocations[index] = value;
+    setDeliveryLocations(newLocations);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#000042] to-[#163C5E] text-white pb-20">
-      <UserNavbar />
+    <form className="max-w-4xl mx-auto p-6 bg-white shadow-md mt-8 rounded-lg space-y-6">
+    <UserNavbar />
+      <h2 className="text-2xl font-semibold">Transportation Tender Submission</h2>
 
-      <div className="max-w-6xl mx-auto px-4 pt-28">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-200">
-              Smart Freight Tendering
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Streamline your logistics procurement with competitive, AI-optimized bids from our verified network of 850+ carriers
-          </p>
-          
-          <Link to="/submit-tender">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-10 py-4 text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/30 flex items-center mx-auto">
-              <FiClipboard className="mr-3 w-6 h-6" />
-              Create New Tender
-            </button>
-          </Link>
-        </div>
+      {/* 1. Company Information */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">1. Company Information</h3>
+        <input type="text" placeholder="Registered Company Name" className="input" />
+        <input type="text" placeholder="Company Registration Number" className="input" />
+        <input type="text" placeholder="VAT Number / Tax ID" className="input" />
+        <input type="text" placeholder="Business Address (Head Office)" className="input" />
+        <input type="number" placeholder="Years in Operation" className="input" />
+        <input type="text" placeholder="Freight License / Accreditation" className="input" />
+        <input type="url" placeholder="Company Website" className="input" />
+        <input type="text" placeholder="Insurance Coverage Details" className="input" />
+      </section>
 
-        {/* Value Proposition Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
-            <FiDollarSign className="w-12 h-12 text-blue-300 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Cost Efficiency</h3>
-            <p className="text-blue-100 leading-relaxed">
-              Receive competitive quotes from pre-vetted logistics partners, ensuring best market rates
-            </p>
+      {/* 2. Contact Information */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">2. Contact Information</h3>
+        <input type="text" placeholder="Contact Person Name" className="input" />
+        <input type="text" placeholder="Job Title / Department" className="input" />
+        <input type="email" placeholder="Business Email Address" className="input" />
+        <input type="tel" placeholder="Phone Number" className="input" />
+        <input type="tel" placeholder="Emergency Contact Number (Optional)" className="input" />
+      </section>
+
+      {/* 3. Pick-Up and Delivery Details */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">3. Pick-Up and Delivery Details</h3>
+        <input type="text" placeholder="Pick-Up Location (Address + Postal Code + Country)" className="input" />
+        <input type="datetime-local" placeholder="Pick-Up Date & Time" className="input" />
+        {deliveryLocations.map((loc, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder={`Delivery Location ${index + 1}`}
+              value={loc}
+              onChange={(e) => handleDeliveryChange(index, e.target.value)}
+              className="input flex-1"
+            />
+            <button type="button" onClick={() => handleRemoveDelivery(index)} className="btn btn-red">Remove</button>
           </div>
+        ))}
+        <button type="button" onClick={handleAddDelivery} className="btn btn-blue">Add Delivery Location</button>
+        <textarea placeholder="Site Access Restrictions or Special Instructions" className="input" />
+      </section>
 
-          <div className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
-            <FiUsers className="w-12 h-12 text-blue-300 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Trusted Network</h3>
-            <p className="text-blue-100 leading-relaxed">
-              Access 850+ verified carriers with performance ratings and service history
-            </p>
-          </div>
+      {/* 4. Cargo Description */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">4. Cargo Description</h3>
+        <input type="text" placeholder="Type of Goods" className="input" />
+        <input type="number" placeholder="Quantity" className="input" />
+        <input type="text" placeholder="Weight (Per Unit / Total)" className="input" />
+        <input type="text" placeholder="Dimensions (L x W x H)" className="input" />
+        <input type="text" placeholder="Packaging Type" className="input" />
+        <textarea placeholder="Special Handling Instructions" className="input" />
+        <input type="text" placeholder="Hazmat Classification (if applicable)" className="input" />
+      </section>
 
-          <div className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
-            <FiCalendar className="w-12 h-12 text-blue-300 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Time Savings</h3>
-            <p className="text-blue-100 leading-relaxed">
-              Automated bid management and comparison tools to accelerate decision making
-            </p>
-          </div>
-        </div>
+      {/* 5. Preferred Mode of Transport */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">5. Preferred Mode of Transport</h3>
+        <select className="input">
+          <option>Road</option>
+          <option>Rail</option>
+          <option>Air</option>
+          <option>Sea</option>
+          <option>Multimodal</option>
+        </select>
+        <input type="text" placeholder="Optional Secondary Mode" className="input" />
+        <select className="input">
+          <option value="">Flexibility on Transport Mode?</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        <input type="text" placeholder="Vehicle Type Required" className="input" />
+      </section>
 
-        {/* Process Section */}
-        <section className="bg-white rounded-2xl shadow-2xl p-10 mb-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-              How It Works
-            </h2>
-            
-            <div className="grid md:grid-cols-4 gap-8 mb-12">
-              {['1. Submit Tender', '2. Receive Bids', '3. Compare Offers', '4. Select Partner'].map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white text-xl font-bold">{index + 1}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">{step}</h3>
-                </div>
-              ))}
-            </div>
+      {/* 6. Service Requirements */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">6. Service Requirements</h3>
+        <input type="text" placeholder="Type of Service" className="input" />
+        <select className="input">
+          <option>One-off</option>
+          <option>Weekly</option>
+          <option>Monthly</option>
+          <option>Project-based</option>
+        </select>
+        <input type="text" placeholder="Required Transit Time" className="input" />
+        <textarea placeholder="Tracking & Visibility Requirements" className="input" />
+        <input type="text" placeholder="Loading/Unloading Equipment Needed" className="input" />
+        <input type="text" placeholder="Insurance Level Required" className="input" />
+        <input type="text" placeholder="Temperature Control (Yes/No + Range)" className="input" />
+        <select className="input">
+          <option value="">Customs Brokerage Needed?</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </section>
 
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <FiCheckCircle className="w-6 h-6 text-blue-500 mr-4 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Comprehensive Tender Details</h3>
-                  <ul className="list-disc list-inside space-y-2 text-gray-600">
-                    <li>Multi-modal transportation options</li>
-                    <li>Real-time capacity availability</li>
-                    <li>Customizable service level agreements</li>
-                    <li>Automated compliance checks</li>
-                  </ul>
-                </div>
-              </div>
+      {/* 7. Additional Information */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">7. Additional Information</h3>
+        <input type="date" placeholder="Bid Submission Deadline" className="input" />
+        <input type="text" placeholder="Preferred Quote Validity Period" className="input" />
+        <input type="text" placeholder="Incoterms (e.g., FOB, CIF)" className="input" />
+        <input type="text" placeholder="Budget Range (Optional)" className="input" />
+        <input type="text" placeholder="Contract Duration if Awarded" className="input" />
+        <textarea placeholder="Evaluation Criteria (e.g., Price, Speed, Reliability)" className="input" />
+        <textarea placeholder="Notes for Suppliers" className="input" />
+      </section>
 
-              <div className="flex items-start">
-                <FiPackage className="w-6 h-6 text-blue-500 mr-4 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Cargo Matching</h3>
-                  <p className="text-gray-600">
-                    Our AI-powered system analyzes your requirements and matches you with the most suitable carriers
-                    based on equipment availability, historical performance, and cost efficiency.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* 8. Upload Supporting Documents */}
+      <section>
+        <h3 className="text-xl font-medium mb-2">8. Upload Supporting Documents</h3>
+        <input type="file" multiple className="input" />
+      </section>
 
-        {/* Stats Section */}
-        <div className="text-center bg-white/10 rounded-2xl p-8 backdrop-blur-sm border border-white/10">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-4">
-              <div className="text-4xl font-bold mb-2">48h</div>
-              <div className="text-blue-200">Average Response Time</div>
-            </div>
-            <div className="p-4">
-              <div className="text-4xl font-bold mb-2">15%</div>
-              <div className="text-blue-200">Average Cost Savings</div>
-            </div>
-            <div className="p-4">
-              <div className="text-4xl font-bold mb-2">99.8%</div>
-              <div className="text-blue-200">On-Time Delivery Rate</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <button type="submit" className="btn btn-green">Submit Tender</button>
+    </form>
   );
 };
 
-export default TenderPage;
+export default Tenders;
+
+// Helper styles (for simplicity)
+// You can replace these with Tailwind utility classes
+const styles = `
+.input { display: block; width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 0.375rem; }
+.btn { padding: 0.5rem 1rem; border-radius: 0.375rem; }
+.btn-blue { background-color: #3b82f6; color: white; }
+.btn-red { background-color: #ef4444; color: white; }
+.btn-green { background-color: #10b981; color: white; }
+`;
+
+// Add style tag directly if not using Tailwind
+if (typeof document !== "undefined") {
+  const style = document.createElement("style");
+  style.innerHTML = styles;
+  document.head.appendChild(style);
+}
