@@ -25,7 +25,7 @@ const Goods = () => {
     console.log({
       goodsValue,
       mode: selectedOriginType,
-      date: selectedDate ? selectedDate.toISOString().split('T')[0] : null, // format YYYY-MM-DD
+      date: selectedDate ? selectedDate.toISOString().split('T')[0] : null,
     });
     navigate('/user-home');
   };
@@ -36,7 +36,7 @@ const Goods = () => {
     (selectedOriginType !== 'Pick own date' || selectedDate);
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white min-h-screen flex flex-col sm:hidden">
+    <div className="max-w-md mx-auto font-poppins p-4 bg-white min-h-screen flex flex-col sm:hidden">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-xl text-gray-800">Goods</h1>
@@ -104,78 +104,80 @@ const Goods = () => {
 
       {/* Goods Type Selection */}
       <div className="mt-3">
-        <p className="text-sm font-medium text-gray-700 mt-4 mb-2">Select Mode</p>
-        <div className="flex flex-col space-y-3">
-          {options.map(({ label }) => (
-            <button
-              key={label}
-              onClick={() => {
-                setSelectedOriginType(label);
-                if (label !== 'Pick own date') setSelectedDate(null);
-              }}
-              className={`flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left ${
-                selectedOriginType === label ? `border-[${customBlue}]` : 'border-gray-300'
-              } hover:border-[${customBlue}]`}
-              style={{
-                borderColor: selectedOriginType === label ? customBlue : undefined,
-                backgroundColor: 'white',
-              }}
-            >
+  <p className="text-sm font-medium text-gray-700 mt-4 mb-2">Select Mode</p>
+  <div className="flex flex-col space-y-3 w-full">
+    {options.map(({ label }) => (
+      <div key={label} className="w-full">
+        <button
+          onClick={() => {
+            setSelectedOriginType(label);
+            if (label !== 'Pick own date') setSelectedDate(null);
+          }}
+          className={`w-full flex items-center space-x-3 py-3 px-4 rounded-md border transition-colors duration-200 text-left ${
+            selectedOriginType === label ? 'border-blue-900' : 'border-gray-300'
+          } hover:border-blue-900`}
+          style={{
+            borderColor: selectedOriginType === label ? customBlue : undefined,
+            backgroundColor: 'white',
+          }}
+        >
+          <span
+            className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
+            style={{
+              borderColor: selectedOriginType === label ? customBlue : '#d1d5db',
+            }}
+          >
+            {selectedOriginType === label && (
               <span
-                className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
+                className="rounded-full"
                 style={{
-                  borderColor: selectedOriginType === label ? customBlue : '#d1d5db',
+                  width: '10px',
+                  height: '10px',
+                  backgroundColor: customBlue,
                 }}
+              />
+            )}
+          </span>
+          <span className="text-gray-700">{label}</span>
+        </button>
+
+        {/* Show date picker directly below "Pick own date" */}
+        {label === 'Pick own date' && selectedOriginType === 'Pick own date' && (
+          <div className="mt-3 w-full">
+            <label htmlFor="pickDate" className="block text-sm font-medium text-gray-700 mb-1">
+              What date will your goods be ready?
+            </label>
+
+            <div className="relative flex">
+              <DatePicker
+                id="pickDate"
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                onClickOutside={() => setOpen(false)}
+                open={open}
+                onInputClick={() => setOpen(true)}
+                minDate={new Date()}
+                placeholderText="Select a date"
+                className="flex-grow px-3 py-2 border border-gray-300 border-r-0 rounded-l-md focus:outline-none focus:ring-2 focus:ring-custom-blue"
+                calendarClassName="rounded-md shadow-lg"
+                dateFormat="MMMM d, yyyy"
+              />
+              <button
+                type="button"
+                onClick={() => setOpen(!open)}
+                className="flex items-center justify-center px-3 border border-gray-300 border-l-0 rounded-r-md text-gray-400 hover:text-custom-blue focus:outline-none"
+                aria-label="Toggle calendar"
+                tabIndex={-1}
               >
-                {selectedOriginType === label && (
-                  <span
-                    className="rounded-full"
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      backgroundColor: customBlue,
-                    }}
-                  />
-                )}
-              </span>
-              <span className="text-gray-700">{label}</span>
-            </button>
-          ))}
-        </div>
+                <FaRegCalendarAlt size={20} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-
-      {selectedOriginType === 'Pick own date' && (
-  <div className="mt-4">
-    <label htmlFor="pickDate" className="block text-sm font-medium text-gray-700 mb-1">
-      What date will your goods be ready?
-    </label>
-
-    <div className="relative w-full flex">
-      <DatePicker
-        id="pickDate"
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
-        onClickOutside={() => setOpen(false)}
-        open={open}
-        onInputClick={() => setOpen(true)}
-        minDate={new Date()}
-        placeholderText="Select a date"
-        className="flex-grow px-3 py-2 border border-gray-300 border-r-0 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-700"
-        calendarClassName="rounded-md shadow-lg"
-        dateFormat="MMMM d, yyyy"
-      />
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-center px-3 border border-gray-300 border-l-0 rounded-r-md text-gray-400 hover:text-blue-700 focus:outline-none"
-        aria-label="Toggle calendar"
-        tabIndex={-1}
-      >
-        <FaRegCalendarAlt size={20} />
-      </button>
-    </div>
+    ))}
   </div>
-)}
+</div>
 
 
       {/* Done Button */}

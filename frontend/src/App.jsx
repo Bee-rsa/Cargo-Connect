@@ -32,6 +32,7 @@ import Destination from "./userComponents/SearchBar/Destination";
 import Mode from "./userComponents/SearchBar/Mode";
 import Load from "./userComponents/SearchBar/Load";
 import Goods from "./userComponents/SearchBar/Goods";
+import Tender from "./userComponents/Home/Tender";
 
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
@@ -86,6 +87,7 @@ const App = () => {
             <Route path="/mode" element={<Mode />} />
             <Route path="/load" element={<Load />} />
             <Route path="/goods" element={<Goods />} />
+            <Route path="/tenders" element={<Tender />} />
 
             <Route path="/user-home" element={
   <ProtectedRoute role="customer">
