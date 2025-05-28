@@ -521,7 +521,7 @@ const Tenders = () => {
 </section>
 
       {/* 6. Service Requirements */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">6</span>
     Service Requirements
@@ -617,7 +617,7 @@ const Tenders = () => {
 </section>
 
 {/* 7. Additional Information */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">7</span>
     Additional Information
@@ -703,7 +703,7 @@ const Tenders = () => {
 </section>
 
 {/* 8. Upload Supporting Documents */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">8</span>
     Upload Supporting Documents
@@ -735,7 +735,7 @@ const Tenders = () => {
   </div>
 </section>
 
-      <button type="submit" className="btn btn-green">Submit Tender</button>
+      <button type="submit" className="btn w-full text-white bg-custom-blue">Submit Tender</button>
     </form>
   );
 };
