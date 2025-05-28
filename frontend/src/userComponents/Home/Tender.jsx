@@ -86,7 +86,7 @@ const Tenders = () => {
       <h2 className="text-xl font-semibold">Transportation Tender Submission</h2>
 
       {/* 1. Company Information */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">1</span>
     Company Information
@@ -149,10 +149,9 @@ const Tenders = () => {
       <div className="relative">
         <input 
           type="text" 
-          placeholder="e.g. 4734567892" 
+          placeholder="e.g. 4734/567/892" 
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
         />
-        <span className="absolute right-3 top-3 text-gray-500">Optional</span>
       </div>
     </div>
 
@@ -176,7 +175,6 @@ const Tenders = () => {
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           required
         />
-        <span className="absolute right-3 top-3 text-gray-500">years</span>
       </div>
     </div>
 
@@ -198,7 +196,7 @@ const Tenders = () => {
 </section>
 
       {/* 2. Contact Information */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-custom-blue mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">2</span>
     Contact Information
@@ -207,7 +205,7 @@ const Tenders = () => {
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     {/* Contact Person Name */}
     <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">Contact Person Name*</label>
+      <label className="block text-sm font-medium text-gray-700">Contact Person Name</label>
       <input 
         type="text" 
         placeholder="John Doe" 
@@ -228,7 +226,7 @@ const Tenders = () => {
     
     {/* Email */}
     <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">Business Email Address*</label>
+      <label className="block text-sm font-medium text-gray-700">Business Email Address</label>
       <input 
         type="email" 
         placeholder="john.doe@company.com" 
@@ -239,7 +237,7 @@ const Tenders = () => {
     
     {/* Primary Phone */}
     <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">Business Telephone Number*</label>
+      <label className="block text-sm font-medium text-gray-700">Business Telephone Number</label>
       <input 
         type="tel" 
         placeholder="+27 78 123 4567" 
@@ -264,7 +262,7 @@ const Tenders = () => {
 </section>
 
 {/* 3. Pick-Up and Delivery Details */}
-<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">3</span>
     Locations
@@ -336,39 +334,196 @@ const Tenders = () => {
 
 
       {/* 4. Cargo Description */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">4. Cargo Description</h3>
-        <input type="text" placeholder="Type of Goods" className="input" />
-        <input type="number" placeholder="Quantity" className="input" />
-        <input type="text" placeholder="Weight (Per Unit / Total)" className="input" />
-        <input type="text" placeholder="Dimensions (L x W x H)" className="input" />
-        <input type="text" placeholder="Packaging Type" className="input" />
-        <textarea placeholder="Special Handling Instructions" className="input" />
-        <input type="text" placeholder="Hazmat Classification (if applicable)" className="input" />
-      </section>
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">4</span>
+    Cargo Description
+  </h3>
 
-      {/* 5. Preferred Mode of Transport */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">5. Preferred Mode of Transport</h3>
-        <select className="input">
-          <option>Road</option>
-          <option>Rail</option>
-          <option>Air</option>
-          <option>Sea</option>
-          <option>Multimodal</option>
-        </select>
-        <input type="text" placeholder="Optional Secondary Mode" className="input" />
-        <select className="input">
-          <option value="">Flexibility on Transport Mode?</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-        <input type="text" placeholder="Vehicle Type Required" className="input" />
-      </section>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {/* Type of Goods */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Type of Goods</label>
+      <input 
+        type="text" 
+        placeholder="e.g. Electronics, Machinery" 
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+
+    {/* Quantity */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Quantity</label>
+      <input 
+        type="number" 
+        placeholder="Number of units/pallets" 
+        min="1"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+
+    {/* Weight */}
+<div className="space-y-1 overflow-x-auto">
+  <label className="block text-sm font-medium text-gray-700 whitespace-nowrap">Weight</label>
+  <div className="flex flex-row gap-2 flex-nowrap min-w-max">
+    <input 
+      type="text" 
+      placeholder="Per unit (kgs)" 
+      className="w-48 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+    />
+    <input 
+      type="text" 
+      placeholder="Total (kgs)" 
+      className="w-48 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+    />
+  </div>
+</div>
+
+{/* Dimensions */}
+<div className="space-y-1 overflow-x-auto">
+  <label className="block text-sm font-medium text-gray-700 whitespace-nowrap">Dimensions</label>
+  <div className="flex flex-row items-center gap-2 flex-nowrap min-w-max">
+    <input 
+      type="text" 
+      placeholder="Length" 
+      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+    />
+    <span className="text-gray-400 select-none">×</span>
+    <input 
+      type="text" 
+      placeholder="Width" 
+      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+    />
+    <span className="text-gray-400 select-none">×</span>
+    <input 
+      type="text" 
+      placeholder="Height" 
+      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+    />
+  </div>
+</div>
+
+
+
+    {/* Packaging Type */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Packaging Type</label>
+      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+        <option value="">Select packaging</option>
+        <option>Pallets</option>
+        <option>Cartons</option>
+        <option>Crates</option>
+        <option>Drums</option>
+        <option>Loose</option>
+      </select>
+    </div>
+
+    {/* Hazmat */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Hazmat Classification</label>
+      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+        <option value="">Not hazardous</option>
+        <option>Class 1: Explosives</option>
+        <option>Class 2: Gases</option>
+        <option>Class 3: Flammable Liquids</option>
+        <option>Class 4: Flammable Solids</option>
+      </select>
+    </div>
+
+    {/* Special Instructions */}
+    <div className="md:col-span-2 space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Special Handling Instructions</label>
+      <textarea 
+        placeholder="Fragile items, temperature control, stacking restrictions..." 
+        rows={3}
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      />
+    </div>
+  </div>
+</section>
+
+{/* 5. Preferred Mode of Transport */}
+<section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">5</span>
+    Preferred Mode of Transport
+  </h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {/* Primary Transport Mode */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Primary Mode</label>
+      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white">
+        <option value="">Select transport mode</option>
+        <option>Road (Truck)</option>
+        <option>Rail</option>
+        <option>Air</option>
+        <option>Sea (FCL)</option>
+        <option>Sea (LCL)</option>
+        <option>Multimodal</option>
+      </select>
+    </div>
+
+    {/* Secondary Transport Mode */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Secondary Mode</label>
+      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white">
+        <option value="">None</option>
+        <option>Road (Truck)</option>
+        <option>Rail</option>
+        <option>Air</option>
+        <option>Sea</option>
+      </select>
+    </div>
+
+    {/* Flexibility */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Flexible on Mode?</label>
+      <div className="flex gap-4 pt-2">
+        <label className="inline-flex items-center">
+          <input type="radio" name="flexibility" className="h-4 w-4 text-blue-600 focus:ring-blue-500" />
+          <span className="ml-2 text-gray-700">Yes</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="radio" name="flexibility" className="h-4 w-4 text-blue-600 focus:ring-blue-500" />
+          <span className="ml-2 text-gray-700">No</span>
+        </label>
+      </div>
+    </div>
+
+    {/* Vehicle Type */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Vehicle Type Required</label>
+      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white">
+        <option value="">Any suitable vehicle</option>
+        <option>Flatbed Trailer</option>
+        <option>Refrigerated Truck</option>
+        <option>Container Truck</option>
+        <option>Tanker</option>
+        <option>Curtainsider</option>
+      </select>
+    </div>
+
+    {/* Special Requirements */}
+    <div className="md:col-span-2 space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Special Transport Requirements</label>
+      <textarea 
+        placeholder="Permits needed, escort vehicles, time restrictions..." 
+        rows={2}
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      />
+    </div>
+  </div>
+</section>
 
       {/* 6. Service Requirements */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">6. Service Requirements</h3>
+      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">6</span>
+    Service Requirements
+  </h3>
         <input type="text" placeholder="Type of Service" className="input" />
         <select className="input">
           <option>One-off</option>
@@ -389,8 +544,11 @@ const Tenders = () => {
       </section>
 
       {/* 7. Additional Information */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">7. Additional Information</h3>
+      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">7</span>
+    Additional Information
+  </h3>
         <input type="date" placeholder="Bid Submission Deadline" className="input" />
         <input type="text" placeholder="Preferred Quote Validity Period" className="input" />
         <input type="text" placeholder="Incoterms (e.g., FOB, CIF)" className="input" />
@@ -401,8 +559,11 @@ const Tenders = () => {
       </section>
 
       {/* 8. Upload Supporting Documents */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">8. Upload Supporting Documents</h3>
+      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">8</span>
+    Upload Supporting Documents
+  </h3>
         <input type="file" multiple className="input" />
       </section>
 
