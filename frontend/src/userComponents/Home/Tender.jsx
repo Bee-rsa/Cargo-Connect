@@ -1,6 +1,8 @@
 import { useState } from "react";
 import UserNavbar from "../../components/Common/userNavbar";
 import Select from "react-select";
+import AddressAutocompleted from '../../components/AutoCompleted';
+
 
 // Country options with flag images
 const countryOptions = [
@@ -99,10 +101,11 @@ const Tenders = () => {
         </div>
         <input type="text" placeholder="Registered Company Name" className="input" />
         <input type="text" placeholder="Company Registration Number" className="input" />
-        <input type="text" placeholder="VAT Number / Tax ID" className="input" />
-        <input type="text" placeholder="Business Address (Head Office)" className="input" />
-        <input type="number" placeholder="Years in Operation" className="input" />
-        <input type="text" placeholder="Freight License / Accreditation" className="input" />
+        <input type="text" placeholder="VAT Number Optional" className="input" />
+        <div className="mb-4">
+        <AddressAutocompleted placeholder="Business Address (Head Office)" />
+      </div>
+        <input type="number" placeholder="Number of Years in Operation" className="input" />
         <input type="url" placeholder="Company Website" className="input" />
         <input type="text" placeholder="Insurance Coverage Details" className="input" />
 

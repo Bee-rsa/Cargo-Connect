@@ -33,9 +33,9 @@ const Destination = () => {
 
   const options = [
     { label: 'Port or Airport', icon: icons.port },
-    { label: 'Factory/Warehouse', icon: icons.warehouse },
+    { label: 'Factory or Warehouse', icon: icons.warehouse },
     { label: 'Business Address', icon: icons.business },
-    { label: 'Residential address', icon: icons.residential },
+    { label: 'Residential Address', icon: icons.residential },
     { label: 'Fulfillment Centre', icon: icons.fulfillment },
   ];
 
