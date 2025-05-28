@@ -19,8 +19,8 @@ const TermsAndConditionsTender = () => {
       <UserNavbar />
       <div className="max-w-3xl mx-auto font-poppins p-6 bg-white shadow-md rounded-lg mt-12">
         <h2 className="text-2xl text-custom-blue font-semibold mb-4">
-          Tender Submission Terms & Conditions
-        </h2>
+  Tender Submission<br />Terms and Conditions
+</h2>
 
         <div className="space-y-3 text-gray-800 text-sm">
           <p>
