@@ -78,16 +78,10 @@ const Navbar = () => {
       <div className={`md:hidden fixed inset-0 z-40 bg-custom-blue transform transition-transform duration-300 ease-in-out ${navDrawerOpen ? 'translate-y-0' : '-translate-y-full'}`}>
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b border-gray-900">
-          <div className="text-3xl text-white font-extrabold tracking-tight">
-            <Link to="/user-home" onClick={handleLinkClick}>Cargo Connect</Link>
-          </div>
-          <button onClick={toggleNavDrawer} className="text-white">
-            <HiXMark className="h-6 w-6" />
-          </button>
         </div>
 
         {/* User Info */}
-        <div className="p-4 border-b border-gray-900">
+        <div className="p-4 -mt-0.5 border-b border-gray-900">
           {/* User section with profile and icon */}
 <div className="flex justify-between items-center p-2 border-b border-gray-900">
   {/* Left: Profile picture + name & email */}

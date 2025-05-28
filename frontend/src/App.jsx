@@ -88,7 +88,7 @@ const App = () => {
             <Route path="/mode" element={<Mode />} />
             <Route path="/load" element={<Load />} />
             <Route path="/goods" element={<Goods />} />
-            <Route path="/tenders" element={<Tender />} /> TermsAndConditionsTender
+            <Route path="/tenders" element={<Tender />} />
             <Route path="/terms-and-conditions-tenders" element={<TermsAndConditionsTender />} />
 
             <Route path="/user-home" element={
