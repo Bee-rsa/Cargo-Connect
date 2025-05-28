@@ -62,9 +62,11 @@ const countryOptions = [
   },
 ];
 
+
 const Tenders = () => {
   const [deliveryLocations, setDeliveryLocations] = useState([""]);
   const [country, setCountry] = useState(null);
+  const [website, setWebsite] = useState('https://');
 
   const handleAddDelivery = () => setDeliveryLocations([...deliveryLocations, ""]);
   const handleRemoveDelivery = (index) => {
@@ -77,6 +79,11 @@ const Tenders = () => {
     newLocations[index] = value;
     setDeliveryLocations(newLocations);
   };
+  const handleChange = (e) => {
+  const value = e.target.value;
+  if (!value.startsWith('https://')) return;
+  setWebsite(value);
+};
 
   return (
     <form className="max-w-4xl mx-auto p-6 bg-white shadow-md mt-8 rounded-lg space-y-6">
@@ -106,7 +113,16 @@ const Tenders = () => {
         <AddressAutocompleted placeholder="Business Address (Head Office)" />
       </div>
         <input type="number" placeholder="Number of Years in Operation" className="input" />
-        <input type="url" placeholder="Company Website" className="input" />
+      <label className="block text-sm font-medium text-gray-600 mb-1">
+        Company Website
+      </label>
+      <input
+        type="url"
+        className="input"
+        value={website}
+        onChange={handleChange}
+        placeholder="Company Website"
+      />
         <input type="text" placeholder="Insurance Coverage Details" className="input" />
 
       </section>
@@ -117,15 +133,14 @@ const Tenders = () => {
         <input type="text" placeholder="Contact Person Name" className="input" />
         <input type="text" placeholder="Job Title / Department" className="input" />
         <input type="email" placeholder="Business Email Address" className="input" />
-        <input type="tel" placeholder="Phone Number" className="input" />
-        <input type="tel" placeholder="Emergency Contact Number (Optional)" className="input" />
+        <input type="tel" placeholder="Business Telephone Number" className="input" />
+        <input type="tel" placeholder="Alternative Contact Number" className="input" />
       </section>
 
       {/* 3. Pick-Up and Delivery Details */}
       <section>
         <h3 className="text-xl font-medium mb-2">3. Pick-Up and Delivery Details</h3>
         <input type="text" placeholder="Pick-Up Location (Address + Postal Code + Country)" className="input" />
-        <input type="datetime-local" placeholder="Pick-Up Date & Time" className="input" />
         {deliveryLocations.map((loc, index) => (
           <div key={index} className="flex items-center gap-2">
             <input
