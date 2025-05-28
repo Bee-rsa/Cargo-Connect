@@ -17,12 +17,12 @@ const TermsAndConditionsTender = () => {
   return (
     <div className="min-h-screen bg-white text-white">
       <UserNavbar />
-      <div className="max-w-3xl mx-auto p-6 bg-white text-gray-800 shadow-md rounded-lg mt-12">
-        <h2 className="text-xl font-semibold mb-4">
+      <div className="max-w-3xl mx-auto font-poppins p-6 bg-white shadow-md rounded-lg mt-12">
+        <h2 className="text-l text-custom-blue font-semibold mb-4">
           Tender Submission Terms & Conditions
         </h2>
 
-        <div className="space-y-3 text-sm">
+        <div className="space-y-3 text-gray-800 text-sm">
           <p>
             Cargo Connect provides a neutral platform for registered companies to submit freight transportation tenders and receive quotes from independent logistics providers. We do not engage in freight operations or act as a freight carrier.
           </p>
@@ -61,7 +61,7 @@ const TermsAndConditionsTender = () => {
     className="w-5 h-5 text-blue-600 accent-custom-blue mt-1"
   />
   <span className="text-sm text-gray-800 leading-relaxed">
-    I accept the <span className="font-semibold text-custom-blue">Terms and Conditions</span> for submitting a transportation tender.
+    I accept the <span className="font-semibold text-custom-blue">Terms & Conditions</span> for submitting a transportation tender.
   </span>
 </label>
 
