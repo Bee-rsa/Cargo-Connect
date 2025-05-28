@@ -66,7 +66,6 @@ const countryOptions = [
 const Tenders = () => {
   const [deliveryLocations, setDeliveryLocations] = useState([""]);
   const [country, setCountry] = useState(null);
-  const [website, setWebsite] = useState('https://');
 
   const handleAddDelivery = () => setDeliveryLocations([...deliveryLocations, ""]);
   const handleRemoveDelivery = (index) => {
@@ -79,11 +78,7 @@ const Tenders = () => {
     newLocations[index] = value;
     setDeliveryLocations(newLocations);
   };
-  const handleChange = (e) => {
-  const value = e.target.value;
-  if (!value.startsWith('https://')) return;
-  setWebsite(value);
-};
+
 
   return (
     <form className="max-w-4xl mx-auto p-6 bg-white shadow-md mt-8 rounded-lg space-y-6">
@@ -91,71 +86,249 @@ const Tenders = () => {
       <h2 className="text-xl font-semibold">Transportation Tender Submission</h2>
 
       {/* 1. Company Information */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">1. Company Information</h3>
-        {/* Country of Business Dropdown */}
-        <div className="mt-4 mb-4">
-          <Select
-            options={countryOptions}
-            value={country}
-            onChange={setCountry}
-            placeholder="Select country of Business"
-            className="text-m"
-            formatOptionLabel={(countryOption) => (
-              <div className="flex items-center gap-2">{countryOption.label}</div>
-            )}
-          />
-        </div>
-        <input type="text" placeholder="Registered Company Name" className="input" />
-        <input type="text" placeholder="Company Registration Number" className="input" />
-        <input type="text" placeholder="VAT Number Optional" className="input" />
-        <div className="mb-4">
-        <AddressAutocompleted placeholder="Business Address (Head Office)" />
-      </div>
-        <input type="number" placeholder="Number of Years in Operation" className="input" />
-      <label className="block text-sm font-medium text-gray-600 mb-1">
-        Company Website
-      </label>
-      <input
-        type="url"
-        className="input"
-        value={website}
-        onChange={handleChange}
-        placeholder="Company Website"
-      />
-        <input type="text" placeholder="Insurance Coverage Details" className="input" />
+<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">1</span>
+    Company Information
+  </h3>
 
-      </section>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* Country Selector */}
+    <div className="md:col-span-2">
+      <label className="block text-sm font-medium text-gray-700 mb-2">Country of Business</label>
+      <Select
+        options={countryOptions}
+        value={country}
+        onChange={setCountry}
+        placeholder="Select country..."
+        className="react-select-container"
+        classNamePrefix="react-select"
+        formatOptionLabel={(countryOption) => (
+          <div className="flex items-center gap-3">
+            <span className={`fi fi-${countryOption.value.toLowerCase()} rounded-sm`}></span>
+            {countryOption.label}
+          </div>
+        )}
+        styles={{
+          control: (base) => ({
+            ...base,
+            minHeight: '44px',
+            borderColor: '#d1d5db',
+            '&:hover': { borderColor: '#9ca3af' },
+            boxShadow: 'none',
+          }),
+        }}
+      />
+    </div>
+
+    {/* Company Name */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Registered Company Name</label>
+      <input 
+        type="text" 
+        placeholder="Acme Corporation Ltd" 
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+
+    {/* Registration Number */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Company Registration Number</label>
+      <input 
+        type="text" 
+        placeholder="12345678" 
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+
+    {/* VAT Number */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">VAT Number</label>
+      <div className="relative">
+        <input 
+          type="text" 
+          placeholder="GB123 4567 89" 
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+        <span className="absolute right-3 top-3 text-gray-500">Optional</span>
+      </div>
+    </div>
+
+    {/* Business Address */}
+    <div className="md:col-span-2 space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Head Office</label>
+      <AddressAutocompleted 
+        placeholder="Enter full address..."
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      />
+    </div>
+
+    {/* Years in Operation */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Number of Years in Operation</label>
+      <div className="relative">
+        <input 
+          type="number" 
+          placeholder="5" 
+          min="0"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          required
+        />
+        <span className="absolute right-3 top-3 text-gray-500">years</span>
+      </div>
+    </div>
+
+    {/* Company Website */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Company Website</label>
+      <div className="flex">
+        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+          https://
+        </span>
+        <input
+          type="url"
+
+          placeholder="yourcompany.com"
+          className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* 2. Contact Information */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">2. Contact Information</h3>
-        <input type="text" placeholder="Contact Person Name" className="input" />
-        <input type="text" placeholder="Job Title / Department" className="input" />
-        <input type="email" placeholder="Business Email Address" className="input" />
-        <input type="tel" placeholder="Business Telephone Number" className="input" />
-        <input type="tel" placeholder="Alternative Contact Number" className="input" />
-      </section>
+<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
+  <h3 className="text-2xl font-semibold text-custom-blue mb-6 pb-3 border-b border-gray-200 flex items-center">
+    <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">2</span>
+    Contact Information
+  </h3>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Contact Person Name */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Contact Person Name*</label>
+      <input 
+        type="text" 
+        placeholder="John Doe" 
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+    
+    {/* Job Title */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Job Title / Department</label>
+      <input 
+        type="text" 
+        placeholder="e.g. Logistics Manager" 
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      />
+    </div>
+    
+    {/* Email */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Business Email Address*</label>
+      <input 
+        type="email" 
+        placeholder="john.doe@company.com" 
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+    
+    {/* Primary Phone */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">Business Telephone Number*</label>
+      <input 
+        type="tel" 
+        placeholder="+1 (555) 123-4567" 
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
+      />
+    </div>
+    
+    {/* Secondary Phone */}
+    <div className="space-y-1 md:col-span-2">
+      <label className="block text-sm font-medium text-gray-700">Alternative Contact Number</label>
+      <div className="relative">
+        <input 
+          type="tel" 
+          placeholder="Optional secondary contact number" 
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+        <span className="absolute right-3 top-2 text-xs text-gray-500">Optional</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* 3. Pick-Up and Delivery Details */}
-      <section>
-        <h3 className="text-xl font-medium mb-2">3. Pick-Up and Delivery Details</h3>
-        <input type="text" placeholder="Pick-Up Location (Address + Postal Code + Country)" className="input" />
-        {deliveryLocations.map((loc, index) => (
-          <div key={index} className="flex items-center gap-2">
-            <input
-              type="text"
-              placeholder={`Delivery Location ${index + 1}`}
-              value={loc}
-              onChange={(e) => handleDeliveryChange(index, e.target.value)}
-              className="input flex-1"
-            />
-            <button type="button" onClick={() => handleRemoveDelivery(index)} className="btn btn-red">Remove</button>
-          </div>
-        ))}
-        <button type="button" onClick={handleAddDelivery} className="btn btn-blue">Add Delivery Location</button>
-        <textarea placeholder="Site Access Restrictions or Special Instructions" className="input" />
-      </section>
+{/* 3. Pick-Up and Delivery Details */}
+<section className="bg-white p-6 rounded-lg shadow-md mb-6">
+  <h3 className="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
+    3. Pick-Up and Delivery Details
+  </h3>
+  
+  <div className="space-y-4">
+    {/* Pick-Up Location */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">Pick-Up Location</label>
+      <input 
+        type="text" 
+        placeholder="Address + Postal Code + Country" 
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" 
+      />
+    </div>
+    
+    {/* Delivery Locations */}
+    <div className="space-y-3">
+      <label className="block text-sm font-medium text-gray-700">Delivery Locations</label>
+      {deliveryLocations.map((loc, index) => (
+        <div key={index} className="flex items-center gap-3">
+          <input
+            type="text"
+            placeholder={`Delivery Location ${index + 1}`}
+            value={loc}
+            onChange={(e) => handleDeliveryChange(index, e.target.value)}
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          />
+          <button 
+            type="button" 
+            onClick={() => handleRemoveDelivery(index)} 
+            className="px-3 py-2 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition flex items-center gap-1"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button 
+        type="button" 
+        onClick={handleAddDelivery} 
+        className="mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition flex items-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+        Add Delivery Location
+      </button>
+    </div>
+    
+    {/* Special Instructions */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">Site Access Restrictions or Special Instructions</label>
+      <textarea 
+        placeholder="Enter any special requirements or instructions..." 
+        rows={3}
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" 
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* 4. Cargo Description */}
       <section>
