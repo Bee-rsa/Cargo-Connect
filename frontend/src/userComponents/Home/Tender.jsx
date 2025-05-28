@@ -137,7 +137,7 @@ const Tenders = () => {
       <label className="block text-sm font-medium text-gray-700">Company Registration Number</label>
       <input 
         type="text" 
-        placeholder="12345678" 
+        placeholder="e.g. 2024/123456/07" 
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
         required
       />
@@ -149,7 +149,7 @@ const Tenders = () => {
       <div className="relative">
         <input 
           type="text" 
-          placeholder="GB123 4567 89" 
+          placeholder="e.g. 4734567892" 
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
         />
         <span className="absolute right-3 top-3 text-gray-500">Optional</span>
@@ -181,20 +181,19 @@ const Tenders = () => {
     </div>
 
     {/* Company Website */}
-    <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">Company Website</label>
-      <div className="flex">
-        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-          https://
-        </span>
-        <input
-          type="url"
-
-          placeholder="yourcompany.com"
-          className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-        />
-      </div>
-    </div>
+<div className="space-y-1">
+  <label className="block text-sm font-medium text-gray-700">Company Website</label>
+  <div className="flex w-full max-w-full overflow-hidden">
+    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm shrink-0">
+      https://
+    </span>
+    <input
+      type="url"
+      placeholder="yourcompany.com"
+      className="min-w-0 w-full px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+    />
+  </div>
+</div>
   </div>
 </section>
 
@@ -222,7 +221,7 @@ const Tenders = () => {
       <label className="block text-sm font-medium text-gray-700">Job Title / Department</label>
       <input 
         type="text" 
-        placeholder="e.g. Logistics Manager" 
+        placeholder="e.g. General Manager" 
         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
       />
     </div>
@@ -243,7 +242,7 @@ const Tenders = () => {
       <label className="block text-sm font-medium text-gray-700">Business Telephone Number*</label>
       <input 
         type="tel" 
-        placeholder="+1 (555) 123-4567" 
+        placeholder="+27 78 123 4567" 
         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
         required
       />
@@ -268,17 +267,16 @@ const Tenders = () => {
 <section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">3</span>
-    Location
+    Locations
   </h3>
   
   <div className="space-y-4">
     {/* Pick-Up Location */}
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Pick-Up Location</label>
-      <input 
-        type="text" 
-        placeholder="Address + Postal Code + Country" 
-        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" 
+      <AddressAutocompleted 
+        placeholder="Enter full address..."
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
       />
     </div>
     
@@ -334,6 +332,7 @@ const Tenders = () => {
     </div>
   </div>
 </section>
+
 
 
       {/* 4. Cargo Description */}
