@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
@@ -7,10 +6,8 @@ const AddressSection = () => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [setSelectedAddress] = useState(null);
   const API_KEY = 'pk.fbe44614aa16a14c9c3840516ddbd1a4';
 
-  // Debounced search function
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const searchAddresses = useCallback(
     debounce(async (searchText) => {
@@ -42,19 +39,11 @@ const AddressSection = () => {
 
   const handleSelect = (address) => {
     setQuery(address.display_name);
-    setSelectedAddress({
-      display: address.display_name,
-      lat: address.lat,
-      lon: address.lon,
-      details: address.address
-    });
     setSuggestions([]);
   };
 
   return (
     <div className="mt-4 text-gray-700">
-
-      {/* Address Autocomplete Input */}
       <div className="relative">
         <input
           type="text"
@@ -63,9 +52,9 @@ const AddressSection = () => {
           placeholder="Business Address"
           className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
         />
-        
+
         {loading && <div className="absolute z-10 w-full p-2 bg-white">Loading...</div>}
-        
+
         {suggestions.length > 0 && (
           <ul className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-auto">
             {suggestions.map((suggestion) => (
@@ -80,15 +69,8 @@ const AddressSection = () => {
           </ul>
         )}
       </div>
-
-      {/* Done Button - Only shows when address is selected */}
-      
     </div>
   );
-};
-
-AddressSection.propTypes = {
-  onDone: PropTypes.func.isRequired,
 };
 
 export default AddressSection;
