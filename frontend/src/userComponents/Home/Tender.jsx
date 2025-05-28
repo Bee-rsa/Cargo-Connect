@@ -2,6 +2,8 @@ import { useState } from "react";
 import UserNavbar from "../../components/Common/userNavbar";
 import Select from "react-select";
 import AddressAutocompleted from '../../components/AutoCompleted';
+import { FiCalendar, FiUploadCloud } from 'react-icons/fi';
+
 
 
 // Country options with flag images
@@ -371,12 +373,12 @@ const Tenders = () => {
     <input 
       type="text" 
       placeholder="Per unit (kgs)" 
-      className="w-48 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      className="w-40 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
     />
     <input 
       type="text" 
       placeholder="Total (kgs)" 
-      className="w-48 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      className="w-40 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
     />
   </div>
 </div>
@@ -387,20 +389,20 @@ const Tenders = () => {
   <div className="flex flex-row items-center gap-2 flex-nowrap min-w-max">
     <input 
       type="text" 
-      placeholder="Length" 
-      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      placeholder="L" 
+      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
     <span className="text-gray-400 select-none">×</span>
     <input 
       type="text" 
-      placeholder="Width" 
-      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      placeholder="W" 
+      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
     <span className="text-gray-400 select-none">×</span>
     <input 
       type="text" 
-      placeholder="Height" 
-      className="w-28 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      placeholder="H" 
+      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
   </div>
 </div>
@@ -448,7 +450,7 @@ const Tenders = () => {
 <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">5</span>
-    Preferred Mode of Transport
+   Mode of Transport
   </h3>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -519,53 +521,219 @@ const Tenders = () => {
 </section>
 
       {/* 6. Service Requirements */}
-      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">6</span>
     Service Requirements
   </h3>
-        <input type="text" placeholder="Type of Service" className="input" />
-        <select className="input">
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Type of Service</label>
+        <input 
+          type="text" 
+          placeholder="e.g. Express Delivery, FTL, LTL" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Service Frequency</label>
+        <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
           <option>One-off</option>
           <option>Weekly</option>
           <option>Monthly</option>
           <option>Project-based</option>
         </select>
-        <input type="text" placeholder="Required Transit Time" className="input" />
-        <textarea placeholder="Tracking & Visibility Requirements" className="input" />
-        <input type="text" placeholder="Loading/Unloading Equipment Needed" className="input" />
-        <input type="text" placeholder="Insurance Level Required" className="input" />
-        <input type="text" placeholder="Temperature Control (Yes/No + Range)" className="input" />
-        <select className="input">
-          <option value="">Customs Brokerage Needed?</option>
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Required Transit Time</label>
+        <input 
+          type="text" 
+          placeholder="e.g. 48 hours, 5 days" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Temperature Control</label>
+        <div className="flex space-x-4">
+          <div className="flex items-center">
+            <input type="radio" id="temp-yes" name="temperature" className="h-4 w-4 text-blue-600" />
+            <label htmlFor="temp-yes" className="ml-2 text-gray-700">Yes</label>
+          </div>
+          <div className="flex items-center">
+            <input type="radio" id="temp-no" name="temperature" className="h-4 w-4 text-blue-600" />
+            <label htmlFor="temp-no" className="ml-2 text-gray-700">No</label>
+          </div>
+        </div>
+        <input 
+          type="text" 
+          placeholder="Temperature range (if applicable)" 
+          className="w-full mt-2 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+    </div>
+    
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Tracking & Visibility Requirements</label>
+        <textarea 
+          placeholder="Real-time tracking, daily reports, etc." 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[120px]" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Loading/Unloading Equipment</label>
+        <input 
+          type="text" 
+          placeholder="e.g. Forklift, Crane, Pallet Jack" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Insurance Level Required</label>
+        <input 
+          type="text" 
+          placeholder="e.g. All-risk, Total value coverage" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Customs Brokerage Needed?</label>
+        <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+          <option>Select option</option>
           <option>Yes</option>
           <option>No</option>
         </select>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* 7. Additional Information */}
-      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+{/* 7. Additional Information */}
+<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">7</span>
     Additional Information
   </h3>
-        <input type="date" placeholder="Bid Submission Deadline" className="input" />
-        <input type="text" placeholder="Preferred Quote Validity Period" className="input" />
-        <input type="text" placeholder="Incoterms (e.g., FOB, CIF)" className="input" />
-        <input type="text" placeholder="Budget Range (Optional)" className="input" />
-        <input type="text" placeholder="Contract Duration if Awarded" className="input" />
-        <textarea placeholder="Evaluation Criteria (e.g., Price, Speed, Reliability)" className="input" />
-        <textarea placeholder="Notes for Suppliers" className="input" />
-      </section>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Bid Submission Deadline</label>
+        <div className="relative">
+          <input 
+            type="date" 
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+          />
+          <FiCalendar className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+        </div>
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Quote Validity Period</label>
+        <input 
+          type="text" 
+          placeholder="e.g. 30 days, 60 days" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Incoterms</label>
+        <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+          <option>Select Incoterm</option>
+          <option>EXW (Ex Works)</option>
+          <option>FOB (Free On Board)</option>
+          <option>CIF (Cost, Insurance & Freight)</option>
+          <option>DDP (Delivered Duty Paid)</option>
+        </select>
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Budget Range (Optional)</label>
+        <div className="flex space-x-3">
+          <input 
+            type="text" 
+            placeholder="Min" 
+            className="w-1/2 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+          />
+          <input 
+            type="text" 
+            placeholder="Max" 
+            className="w-1/2 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+          />
+        </div>
+      </div>
+    </div>
+    
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Contract Duration if Awarded</label>
+        <input 
+          type="text" 
+          placeholder="e.g. 1 year, 6 months" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Evaluation Criteria</label>
+        <textarea 
+          placeholder="Price, Speed, Reliability, Experience, etc." 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[100px]" 
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Notes for Suppliers</label>
+        <textarea 
+          placeholder="Special requirements or instructions" 
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[100px]" 
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* 8. Upload Supporting Documents */}
-      <section className="bg-white p-4 rounded-xl shadow-md mb-8 border border-gray-100">
+{/* 8. Upload Supporting Documents */}
+<section className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
   <h3 className="text-2xl font-semibold text-gray-800 mb-6 pb-3 border-b border-gray-200 flex items-center">
     <span className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-lg">8</span>
     Upload Supporting Documents
   </h3>
-        <input type="file" multiple className="input" />
-      </section>
+  
+  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer bg-gray-50">
+    <div className="flex flex-col items-center justify-center">
+      <FiUploadCloud className="h-12 w-12 text-gray-400 mb-3" />
+      <p className="text-gray-600 mb-1">Drag & drop files here or click to browse</p>
+      <p className="text-sm text-gray-500 mb-4">Supports PDF, DOC, XLS up to 20MB</p>
+      <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">
+        Select Files
+      </button>
+    </div>
+    <input 
+      type="file" 
+      multiple 
+      className="hidden" 
+    />
+  </div>
+  
+  <div className="mt-4 text-sm text-gray-500">
+    <p>Required documents:</p>
+    <ul className="list-disc pl-5 mt-1 space-y-1">
+      <li>Product specifications sheet</li>
+      <li>Packaging requirements</li>
+      <li>Previous shipping documents (if any)</li>
+    </ul>
+  </div>
+</section>
 
       <button type="submit" className="btn btn-green">Submit Tender</button>
     </form>
