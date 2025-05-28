@@ -373,12 +373,12 @@ const Tenders = () => {
     <input 
       type="text" 
       placeholder="Per unit (kgs)" 
-      className="w-40 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      className="w-36 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
     />
     <input 
       type="text" 
       placeholder="Total (kgs)" 
-      className="w-40 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+      className="w-36 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
     />
   </div>
 </div>
@@ -390,19 +390,19 @@ const Tenders = () => {
     <input 
       type="text" 
       placeholder="L" 
-      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      className="w-20 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
     <span className="text-gray-400 select-none">×</span>
     <input 
       type="text" 
       placeholder="W" 
-      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      className="w-20 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
     <span className="text-gray-400 select-none">×</span>
     <input 
       type="text" 
       placeholder="H" 
-      className="w-24 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
+      className="w-20 flex-shrink-0 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-center"
     />
   </div>
 </div>
