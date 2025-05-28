@@ -53,15 +53,15 @@ const TermsAndConditionsTender = () => {
         </div>
 
         <div className="mt-6">
-          <label className="flex items-start gap-3 mt-6 bg-gray-100 p-4 rounded-md shadow-sm border border-gray-300 hover:border-blue-500 transition-all duration-300 cursor-pointer">
+          <label className="flex items-start gap-3 mt-6 bg-gray-100 p-4 rounded-md shadow-sm border border-gray-300 hover:border-custom-blue transition-all duration-300 cursor-pointer">
   <input
     type="checkbox"
     checked={accepted}
     onChange={(e) => setAccepted(e.target.checked)}
-    className="w-5 h-5 text-blue-600 accent-blue-600 mt-1"
+    className="w-5 h-5 text-blue-600 accent-custom-blue mt-1"
   />
   <span className="text-sm text-gray-800 leading-relaxed">
-    I accept the <span className="font-semibold text-blue-700">Terms and Conditions</span> for submitting a transportation tender.
+    I accept the <span className="font-semibold text-custom-blue">Terms and Conditions</span> for submitting a transportation tender.
   </span>
 </label>
 
