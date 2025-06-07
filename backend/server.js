@@ -23,19 +23,12 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // for local dev
-      "https://cargo-connect-5hof.vercel.app" // deployed frontend URL
-    ],
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
-
 app.options("*", cors({
-  origin: [
-    "http://localhost:5173",
-    "https://cargo-connect-5hof.vercel.app"
-  ],
+  origin: "http://localhost:5173",
   credentials: true,
 }));
 
