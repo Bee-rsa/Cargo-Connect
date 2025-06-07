@@ -98,7 +98,7 @@ const ProfilePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-custom-blue to-blue-700 flex flex-col">
       <UserNavbar />
-      <div className="flex-grow flex mt-12 flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
+      <div className="flex-grow flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-custom-sage flex items-center justify-center gap-2">
