@@ -105,10 +105,9 @@ const ProfilePage = () => {
               <User className="text-custom-sage" size={28} />
               {activeForm === 'company' ? 'Company Profile' : 'User Profile'}
             </h2>
-            <p className="mt-2 text-sm text-gray-400">
-              {isEditing ? `Edit and save your ${activeForm} details` : `View your ${activeForm} details`}
-            </p>
-            
+            <p className="mt-2 text-sm text-gray-400 min-h-[24px] sm:min-h-[32px]">
+  {isEditing ? `Edit and save your ${activeForm} details` : `View your ${activeForm} details`}
+</p>        
             {/* Add the toggle buttons */}
             <div className="flex justify-center mt-6 space-x-4">
   <button
@@ -340,7 +339,7 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-              <div className="space-y-6 -mt-8">
+              <div className="space-y-6">
                 {/* User Profile Form - Add your user profile fields here */}
                 <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700">
