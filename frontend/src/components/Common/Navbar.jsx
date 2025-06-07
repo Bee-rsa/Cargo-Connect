@@ -137,7 +137,7 @@ const Navbar = () => {
             {user && user.role === "admin" && (
               <Link to="/admin" className="block bg-black px-2 rounded text-sm text-white">Admin</Link>
             )}
-            <Link to="/profile" className="hover:text-black">
+            <Link to="/login" className="hover:text-black">
               <HiOutlineUser className="h-6 w-6 text-custom-sage" />
             </Link>
             <div className="overflow-hidden text-white">
