@@ -14,17 +14,25 @@ import { clearCart } from "../../redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchCompanyProfile } from "../../redux/slices/profileSlice.js";
+import { useEffect } from "react"; 
 
 
 const Navbar = () => {
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const { company } = useSelector((state) => state.profile);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const toggleNavDrawer = () => {
     setNavDrawerOpen(!navDrawerOpen);
   };
+
+    // Fetch profile on mount
+    useEffect(() => {
+      dispatch(fetchCompanyProfile());
+    }, [dispatch]);
 
   const handleLinkClick = () => {
     if (navDrawerOpen) {
@@ -87,10 +95,13 @@ const Navbar = () => {
   {/* Left: Profile picture + name & email */}
   <div className="flex items-center space-x-4">
     <img
-      src={user?.profilePicture || defaultProfilePic}
-      alt="Profile"
-      className="h-12 w-12 rounded-full object-cover"
-    />
+  src={company?.image || defaultProfilePic}
+  onError={(e) => (e.currentTarget.src = defaultProfilePic)}
+  alt="Company Logo"
+  className="h-12 w-12 rounded-full object-cover"
+/>
+
+
     <div>
       <h2 className="text-white text-lg font-semibold">
         {user?.name || 'HotlineUser'}

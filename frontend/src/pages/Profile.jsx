@@ -356,6 +356,39 @@ const ProfilePage = () => {
               </form>
             ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Profile Picture */}
+                <div className="flex flex-col items-left">
+                  <div className="relative group">
+                    <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
+                      {formData.image ? (
+                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
+                          <User className="text-gray-400" size={40} />
+                        </div>
+                      )}
+                    </div>
+                    {isEditing && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current.click()}
+                          className="absolute -bottom-2 -right-2 bg-custom-blue text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all"
+                          title="Change Company Logo"
+                        >
+                          <Camera size={16} />
+                        </button>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleImageChange}
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
               {/* Name */}
               <div className="space-y-1">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
