@@ -17,8 +17,6 @@ const ProfilePage = () => {
     image: null
   });
 
-  const [formErrors, setFormErrors] = useState({}); // Validation errors
-
   // Control if we're editing or just viewing
   const [isEditing, setIsEditing] = useState(false);
 
@@ -41,40 +39,17 @@ const ProfilePage = () => {
         typeOfCompany: company.typeOfCompany || "",
         image: company.image || null
       });
-      setFormErrors({});
     }
   }, [company]);
-
-  // Validate required fields
-  const validate = () => {
-    const errors = {};
-    if (!formData.companyName.trim()) errors.companyName = "Company Name is required.";
-    if (!formData.numberOfEmployees || formData.numberOfEmployees <= 0) errors.numberOfEmployees = "Please enter a valid number of employees.";
-    if (!formData.country.trim()) errors.country = "Country is required.";
-    if (!formData.city.trim()) errors.city = "City is required.";
-    return errors;
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    setFormErrors(prev => ({ ...prev, [name]: undefined })); // Clear error on change
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate file type and size (max 5MB)
-      const validTypes = ["image/jpeg", "image/png", "image/gif"];
-      if (!validTypes.includes(file.type)) {
-        alert("Only JPG, PNG, and GIF images are allowed.");
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert("Image size should be less than 5MB.");
-        return;
-      }
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData(prev => ({ ...prev, image: reader.result }));
@@ -102,7 +77,6 @@ const ProfilePage = () => {
         image: company.image || null
       });
     }
-    setFormErrors({});
     setIsEditing(false);
     dispatch(clearProfileError());
   };
@@ -110,13 +84,6 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(clearProfileError());
-
-    const errors = validate();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
     try {
       await dispatch(updateCompanyProfile(formData)).unwrap();
       setIsEditing(false);
@@ -126,19 +93,19 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-custom-blue to-blue-700 flex flex-col">
       <div className="flex-grow flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 flex items-center justify-center gap-2">
-              <User className="text-custom-blue" size={28} />
+            <h2 className="text-3xl font-bold text-white flex items-center justify-center gap-2">
+              <User className="text-white" size={28} />
               Company Profile
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-400">
               {isEditing ? "Edit and save your company details" : "View your company details"}
             </p>
             {error && (
-              <div className="mt-4 p-2 bg-red-100 text-red-700 rounded" role="alert">
+              <div className="mt-4 p-2 bg-red-100 text-red-700 rounded">
                 {error}
               </div>
             )}
@@ -146,12 +113,12 @@ const ProfilePage = () => {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl">
-          <div className="bg-white py-8 px-6 shadow-xl rounded-2xl sm:px-10 border border-gray-100">
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <div className="bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-6 shadow-xl rounded-2xl sm:px-10 border border-gray-100">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Profile Picture */}
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-left">
                 <div className="relative group">
-                  <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
+                  <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
                     {formData.image ? (
                       <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
                     ) : (
@@ -167,19 +134,16 @@ const ProfilePage = () => {
                         onClick={() => fileInputRef.current.click()}
                         className="absolute -bottom-2 -right-2 bg-custom-blue text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all"
                         title="Change Company Logo"
-                        aria-label="Change Company Logo"
                       >
                         <Camera size={16} />
                       </button>
                       <input
                         ref={fileInputRef}
                         type="file"
-                        accept="image/jpeg,image/png,image/gif"
+                        accept="image/*"
                         className="hidden"
                         onChange={handleImageChange}
-                        aria-describedby="imageHelp"
                       />
-                      <p id="imageHelp" className="text-xs text-gray-500 mt-1 text-center">Allowed formats: JPG, PNG, GIF. Max size: 5MB.</p>
                     </>
                   )}
                 </div>
@@ -188,29 +152,18 @@ const ProfilePage = () => {
               {/* Company Name */}
               <div className="space-y-1">
                 <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                  Company Name <span className="text-red-500">*</span>
+                  Company Name
                 </label>
                 {isEditing ? (
-                  <>
-                    <input
-                      id="companyName"
-                      name="companyName"
-                      type="text"
-                      required
-                      value={formData.companyName}
-                      onChange={handleChange}
-                      className={`block w-full px-4 py-3 border rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue ${
-                        formErrors.companyName ? "border-red-500" : "border-gray-300"
-                      }`}
-                      aria-invalid={!!formErrors.companyName}
-                      aria-describedby={formErrors.companyName ? "companyName-error" : undefined}
-                    />
-                    {formErrors.companyName && (
-                      <p id="companyName-error" className="text-sm text-red-600 mt-1">
-                        {formErrors.companyName}
-                      </p>
-                    )}
-                  </>
+                  <input
+                    id="companyName"
+                    name="companyName"
+                    type="text"
+                    required
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                  />
                 ) : (
                   <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.companyName || "-"}</p>
                 )}
@@ -219,30 +172,18 @@ const ProfilePage = () => {
               {/* Number of Employees */}
               <div className="space-y-1">
                 <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-gray-700">
-                  Number of Employees <span className="text-red-500">*</span>
+                  Number of Employees
                 </label>
                 {isEditing ? (
-                  <>
-                    <input
-                      id="numberOfEmployees"
-                      name="numberOfEmployees"
-                      type="number"
-                      min={1}
-                      required
-                      value={formData.numberOfEmployees}
-                      onChange={handleChange}
-                      className={`block w-full px-4 py-3 border rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue ${
-                        formErrors.numberOfEmployees ? "border-red-500" : "border-gray-300"
-                      }`}
-                      aria-invalid={!!formErrors.numberOfEmployees}
-                      aria-describedby={formErrors.numberOfEmployees ? "numberOfEmployees-error" : undefined}
-                    />
-                    {formErrors.numberOfEmployees && (
-                      <p id="numberOfEmployees-error" className="text-sm text-red-600 mt-1">
-                        {formErrors.numberOfEmployees}
-                      </p>
-                    )}
-                  </>
+                  <input
+                    id="numberOfEmployees"
+                    name="numberOfEmployees"
+                    type="number"
+                    required
+                    value={formData.numberOfEmployees}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                  />
                 ) : (
                   <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.numberOfEmployees || "-"}</p>
                 )}
@@ -252,82 +193,40 @@ const ProfilePage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                    Country <span className="text-red-500">*</span>
+                    Country
                   </label>
                   {isEditing ? (
-                    <>
-                      <input
-                        id="country"
-                        name="country"
-                        type="text"
-                        required
-                        value={formData.country}
-                        onChange={handleChange}
-                        className={`block w-full px-4 py-3 border rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue ${
-                          formErrors.country ? "border-red-500" : "border-gray-300"
-                        }`}
-                        aria-invalid={!!formErrors.country}
-                        aria-describedby={formErrors.country ? "country-error" : undefined}
-                      />
-                      {formErrors.country && (
-                        <p id="country-error" className="text-sm text-red-600 mt-1">
-                          {formErrors.country}
-                        </p>
-                      )}
-                    </>
+                    <input
+                      id="country"
+                      name="country"
+                      type="text"
+                      required
+                      value={formData.country}
+                      onChange={handleChange}
+                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                    />
                   ) : (
                     <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.country || "-"}</p>
                   )}
                 </div>
-
                 <div className="space-y-1">
                   <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                    City <span className="text-red-500">*</span>
+                    City
                   </label>
                   {isEditing ? (
-                    <>
-                      <input
-                        id="city"
-                        name="city"
-                        type="text"
-                        required
-                        value={formData.city}
-                        onChange={handleChange}
-                        className={`block w-full px-4 py-3 border rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue ${
-                          formErrors.city ? "border-red-500" : "border-gray-300"
-                        }`}
-                        aria-invalid={!!formErrors.city}
-                        aria-describedby={formErrors.city ? "city-error" : undefined}
-                      />
-                      {formErrors.city && (
-                        <p id="city-error" className="text-sm text-red-600 mt-1">
-                          {formErrors.city}
-                        </p>
-                      )}
-                    </>
+                    <input
+                      id="city"
+                      name="city"
+                      type="text"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                    />
                   ) : (
                     <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.city || "-"}</p>
                   )}
                 </div>
-              </div>
-
-              {/* Company Overview */}
-              <div className="space-y-1">
-                <label htmlFor="companyOverview" className="block text-sm font-medium text-gray-700">
-                  Company Overview
-                </label>
-                {isEditing ? (
-                  <textarea
-                    id="companyOverview"
-                    name="companyOverview"
-                    rows={4}
-                    value={formData.companyOverview}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
-                  />
-                ) : (
-                  <p className="p-3 bg-gray-50 rounded border border-gray-200 whitespace-pre-wrap">{formData.companyOverview || "-"}</p>
-                )}
               </div>
 
               {/* Type of Company */}
@@ -349,36 +248,61 @@ const ProfilePage = () => {
                 )}
               </div>
 
+              {/* Company Overview */}
+              <div className="space-y-1">
+                <label htmlFor="companyOverview" className="block text-sm font-medium text-gray-700">
+                  Company Overview
+                </label>
+                {isEditing ? (
+                  <textarea
+                    id="companyOverview"
+                    name="companyOverview"
+                    rows={4}
+                    value={formData.companyOverview}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                    placeholder="Tell others about your company..."
+                  />
+                ) : (
+                  <p className="p-3 bg-gray-50 rounded border border-gray-200 whitespace-pre-wrap">{formData.companyOverview || "-"}</p>
+                )}
+              </div>
+
               {/* Buttons */}
-              <div className="flex justify-end space-x-4">
+              <div className="flex gap-4 justify-end">
                 {isEditing ? (
                   <>
                     <button
                       type="button"
                       onClick={handleCancelClick}
-                      className="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-blue"
+                      className="px-6 py-3 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition"
+                      disabled={loading}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
+                      className="flex items-center gap-2 px-6 py-3 rounded-lg bg-custom-blue text-white hover:bg-blue-700 transition"
                       disabled={loading}
-                      className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${
-                        loading
-                          ? "bg-blue-300 cursor-not-allowed"
-                          : "bg-custom-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-blue"
-                      }`}
                     >
-                      {loading ? "Saving..." : <><Save size={16} className="mr-2" /> Save</>}
+                      {loading ? (
+                        <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.3 0 0 5.3 0 12h4z" />
+                        </svg>
+                      ) : (
+                        <Save size={16} />
+                      )}
+                      Save
                     </button>
                   </>
                 ) : (
                   <button
                     type="button"
                     onClick={handleEditClick}
-                    className="inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-custom-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-blue"
+                    className="flex items-center gap-2 px-6 py-3 rounded-lg bg-custom-blue text-white hover:bg-blue-700 transition"
                   >
-                    <Edit3 size={16} className="mr-2" /> Edit Profile
+                    <Edit3 size={16} /> Edit
                   </button>
                 )}
               </div>
