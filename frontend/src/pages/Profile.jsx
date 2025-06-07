@@ -101,7 +101,7 @@ const ProfilePage = () => {
       <div className="flex-grow flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-custom-sage flex items-center justify-center gap-2">
+            <h2 className="text-3xl font-bold mt-12 text-custom-sage flex items-center justify-center gap-2">
               <User className="text-custom-sage" size={28} />
               {activeForm === 'company' ? 'Company Profile' : 'User Profile'}
             </h2>
