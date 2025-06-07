@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Camera, User, Edit3, Save } from "lucide-react";
 import { fetchCompanyProfile, updateCompanyProfile, clearProfileError } from "../redux/slices/profileSlice";
-
+import UserNavbar from "../components/Common/userNavbar";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -97,6 +97,7 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-custom-blue to-blue-700 flex flex-col">
+      <UserNavbar />
       <div className="flex-grow flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
           <div className="text-center">
@@ -338,7 +339,7 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-              <div className="space-y-6">
+            <div className="space-y-6 min-h-[500px] flex items-center justify-center text-gray-500">
                 {/* User Profile Form - Add your user profile fields here */}
                 <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700">
