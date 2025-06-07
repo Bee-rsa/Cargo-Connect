@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Camera, User, Edit3, Save } from "lucide-react";
 import { fetchCompanyProfile, updateCompanyProfile, clearProfileError } from "../redux/slices/profileSlice";
-import UserNavbar from "../components/Common/userNavbar";
+
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -97,7 +97,6 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-custom-blue to-blue-700 flex flex-col">
-      <UserNavbar />
       <div className="flex-grow flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
           <div className="text-center">
