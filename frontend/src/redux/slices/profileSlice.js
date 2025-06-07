@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = window.location.hostname === 'localhost'
+const VITE_BACKEND_URL = window.location.hostname === 'localhost'
   ? 'http://localhost:3000'
   : 'https://cargo-connect-5hof.vercel.app';
 
@@ -12,7 +12,7 @@ export const fetchCompanyProfile = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = localStorage.getItem("userToken");
-      const response = await axios.get(`${API_BASE_URL}/api/profile`, {
+      const response = await axios.get(`${VITE_BACKEND_URL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ export const createCompanyProfile = createAsyncThunk(
     try {
       const token = localStorage.getItem("userToken");
       const response = await axios.post(
-        `${API_BASE_URL}/api/profile`,
+        `${VITE_BACKEND_URL}/api/profile`,
         profileData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -61,7 +61,7 @@ export const updateCompanyProfile = createAsyncThunk(
     try {
       const token = localStorage.getItem("userToken");
       const response = await axios.put(
-        `${API_BASE_URL}/api/profile`,
+        `${VITE_BACKEND_URL}/api/profile`,
         profileData,
         {
           headers: { Authorization: `Bearer ${token}` },
