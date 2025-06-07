@@ -339,38 +339,40 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-            <div className="space-y-6 min-h-[500px] flex items-center justify-center text-gray-500">
-                {/* User Profile Form - Add your user profile fields here */}
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">
-                    User Name
-                  </label>
-                  <p className="p-3 bg-gray-50 rounded border border-gray-200">John Doe</p>
-                </div>
-                
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Email
-                  </label>
-                  <p className="p-3 bg-gray-50 rounded border border-gray-200">john.doe@example.com</p>
-                </div>
-                
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Role
-                  </label>
-                  <p className="p-3 bg-gray-50 rounded border border-gray-200">Administrator</p>
-                </div>
-                
-                <div className="flex justify-end">
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 px-6 py-3 rounded-lg bg-custom-blue text-white hover:bg-blue-700 transition"
-                  >
-                    <Edit3 size={16} /> Edit User Profile
-                  </button>
-                </div>
-              </div>
+            <div className="max-w-md w-full mx-auto p-6 bg-white rounded-md shadow-md">
+  <div className="space-y-6 min-h-[500px] flex flex-col justify-center text-gray-500">
+    {/* User Profile Form - Add your user profile fields here */}
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">
+        User Name
+      </label>
+      <p className="p-3 bg-gray-50 rounded border border-gray-200">John Doe</p>
+    </div>
+
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">
+        Email
+      </label>
+      <p className="p-3 bg-gray-50 rounded border border-gray-200">john.doe@example.com</p>
+    </div>
+
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">
+        Role
+      </label>
+      <p className="p-3 bg-gray-50 rounded border border-gray-200">Administrator</p>
+    </div>
+
+    <div className="flex justify-end">
+      <button
+        type="button"
+        className="flex items-center gap-2 px-6 py-3 rounded-lg bg-custom-blue text-white hover:bg-blue-700 transition"
+      >
+        <Edit3 size={16} /> Edit User Profile
+      </button>
+    </div>
+  </div>
+</div>
             )}
           </div>
         </div>
