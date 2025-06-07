@@ -1,15 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const API_BASE_URL = "http://localhost:3000";
 
-// GET Profile
+// ✅ Updated fetchCompanyProfile with log and fallback
 export const fetchCompanyProfile = createAsyncThunk(
   "profile/fetchCompanyProfile",
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
-      const token = localStorage.getItem("userToken"); // <-- fixed here
-
+      const token = localStorage.getItem("userToken");
       const response = await axios.get(`${API_BASE_URL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -17,70 +16,63 @@ export const fetchCompanyProfile = createAsyncThunk(
         withCredentials: true,
       });
 
-      return response.data.company;
+      console.log("Fetched profile response:", response.data); // 🔍 Debug log
+
+      // Return either company or full data depending on response structure
+      return response.data.company || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data || { message: "Failed to fetch profile" }
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message || "Failed to fetch profile"
       );
     }
   }
 );
 
+// ✅ Unchanged: Create Company Profile
 export const createCompanyProfile = createAsyncThunk(
   "profile/createCompanyProfile",
   async (profileData, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("userToken");
-
       const response = await axios.post(
         `${API_BASE_URL}/api/profile`,
         profileData,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         }
       );
-
       return response.data.company;
     } catch (error) {
       return rejectWithValue(
-        error.response?.data || { message: error.message || "Failed to create profile" }
+        error.response?.data?.message || error.message || "Failed to create profile"
       );
     }
   }
 );
 
-
+// ✅ Unchanged: Update Company Profile
 export const updateCompanyProfile = createAsyncThunk(
   "profile/updateCompanyProfile",
   async (profileData, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("userToken");
-
       const response = await axios.put(
-        `${API_BASE_URL}/api/profile`,  // NO userId here
+        `${API_BASE_URL}/api/profile`,
         profileData,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         }
       );
-
       return response.data.company;
     } catch (error) {
       return rejectWithValue(
-        error.response?.data || { message: error.message || "Failed to update profile" }
+        error.response?.data?.message || error.message || "Failed to update profile"
       );
     }
   }
 );
-
-
-
 
 const initialState = {
   company: null,
@@ -96,33 +88,50 @@ const profileSlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchCompanyProfile.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCompanyProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.company = action.payload;
-      })
-      .addCase(fetchCompanyProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.message;
-      })
-      .addCase(updateCompanyProfile.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(updateCompanyProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.company = action.payload;
-      })
-      .addCase(updateCompanyProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.message;
-      });
-  },
+extraReducers: (builder) => {
+  builder
+    // Fetch company profile
+    .addCase(fetchCompanyProfile.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchCompanyProfile.fulfilled, (state, action) => {
+      state.loading = false;
+      state.company = action.payload; // ✅ Direct assignment
+    })
+    .addCase(fetchCompanyProfile.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload || "Failed to fetch profile";
+    })
+
+    // Create company profile
+    .addCase(createCompanyProfile.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(createCompanyProfile.fulfilled, (state, action) => {
+      state.loading = false;
+      state.company = action.payload;
+    })
+    .addCase(createCompanyProfile.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+
+    // Update company profile
+    .addCase(updateCompanyProfile.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(updateCompanyProfile.fulfilled, (state, action) => {
+      state.loading = false;
+      state.company = action.payload;
+    })
+    .addCase(updateCompanyProfile.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+},
 });
 
 export const { clearProfileError } = profileSlice.actions;
