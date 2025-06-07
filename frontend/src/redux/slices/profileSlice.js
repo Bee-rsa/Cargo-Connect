@@ -3,7 +3,7 @@ import axios from "axios";
 
 const VITE_BACKEND_URL = window.location.hostname === 'localhost'
   ? 'http://localhost:3000'
-  : 'https://cargo-connect-5hof.vercel.app';
+  : 'https://cargo-connect-puce.vercel.app';
 
 
 // ✅ Updated fetchCompanyProfile with log and fallback
