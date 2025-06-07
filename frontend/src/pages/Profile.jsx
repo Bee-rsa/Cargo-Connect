@@ -344,7 +344,7 @@ const ProfilePage = () => {
   <div className="space-y-6 min-h-[500px] flex flex-col justify-center text-gray-500">
     
     {/* Profile Picture */}
-                <div className="flex flex-col items-left">
+                <div className="flex -mt-6 flex-col items-left">
                   <div className="relative group">
                     <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
                       {formData.image ? (
