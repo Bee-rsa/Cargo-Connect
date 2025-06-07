@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://cargo-connect-5hof.vercel.app";
 
 // ✅ Updated fetchCompanyProfile with log and fallback
 export const fetchCompanyProfile = createAsyncThunk(
