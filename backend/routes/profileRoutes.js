@@ -6,7 +6,7 @@ const {
   createCompanyProfile,
   updateCompanyProfile,
   fetchCompanyProfile,
-} = require("../controllers/profileController");
+} = require("../Controllers/profileController");
 
 // Use middleware correctly
 router.post("/", protectRoute, createCompanyProfile);
