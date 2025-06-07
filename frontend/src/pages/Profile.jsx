@@ -152,7 +152,7 @@ const ProfilePage = () => {
                   <div className="relative group">
                     <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
                       {formData.image ? (
-                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
+                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-fill" />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
                           <User className="text-gray-400" size={40} />
@@ -340,7 +340,7 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-6 -mt-8">
                 {/* User Profile Form - Add your user profile fields here */}
                 <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700">
