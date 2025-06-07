@@ -151,7 +151,7 @@ const ProfilePage = () => {
                   <div className="relative group">
                     <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
                       {formData.image ? (
-                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-fill" />
+                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
                           <User className="text-gray-400" size={40} />
@@ -339,9 +339,45 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-            <div className="max-w-md w-full mx-auto p-6 bg-white rounded-md shadow-md">
+            <div className="max-w-md w-full mx-auto">
+  <div className="max-w-md w-full mx-auto">
   <div className="space-y-6 min-h-[500px] flex flex-col justify-center text-gray-500">
-    {/* User Profile Form - Add your user profile fields here */}
+    
+    {/* Profile Picture */}
+                <div className="flex flex-col items-left">
+                  <div className="relative group">
+                    <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
+                      {formData.image ? (
+                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
+                          <User className="text-gray-400" size={40} />
+                        </div>
+                      )}
+                    </div>
+                    {isEditing && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current.click()}
+                          className="absolute -bottom-2 -right-2 bg-custom-blue text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all"
+                          title="Change Company Logo"
+                        >
+                          <Camera size={16} />
+                        </button>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleImageChange}
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
+    
+    {/* User Profile Form */}
     <div className="space-y-1">
       <label className="block text-sm font-medium text-gray-700">
         User Name
@@ -372,6 +408,7 @@ const ProfilePage = () => {
       </button>
     </div>
   </div>
+</div>
 </div>
             )}
           </div>
