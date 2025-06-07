@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "https://cargo-connect-5hof.vercel.app";
+const API_BASE_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:3000'
+  : 'https://cargo-connect-5hof.vercel.app';
+
 
 // ✅ Updated fetchCompanyProfile with log and fallback
 export const fetchCompanyProfile = createAsyncThunk(
@@ -88,50 +91,50 @@ const profileSlice = createSlice({
       state.error = null;
     },
   },
-extraReducers: (builder) => {
-  builder
-    // Fetch company profile
-    .addCase(fetchCompanyProfile.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(fetchCompanyProfile.fulfilled, (state, action) => {
-      state.loading = false;
-      state.company = action.payload; // ✅ Direct assignment
-    })
-    .addCase(fetchCompanyProfile.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload || "Failed to fetch profile";
-    })
+  extraReducers: (builder) => {
+    builder
+      // Fetch cases
+      .addCase(fetchCompanyProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCompanyProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.company = action.payload;
+      })
+      .addCase(fetchCompanyProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Failed to fetch profile";
+      })
 
-    // Create company profile
-    .addCase(createCompanyProfile.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(createCompanyProfile.fulfilled, (state, action) => {
-      state.loading = false;
-      state.company = action.payload;
-    })
-    .addCase(createCompanyProfile.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
+      // Create cases
+      .addCase(createCompanyProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createCompanyProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.company = action.payload;
+      })
+      .addCase(createCompanyProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
-    // Update company profile
-    .addCase(updateCompanyProfile.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(updateCompanyProfile.fulfilled, (state, action) => {
-      state.loading = false;
-      state.company = action.payload;
-    })
-    .addCase(updateCompanyProfile.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-},
+      // Update cases
+      .addCase(updateCompanyProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateCompanyProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.company = action.payload;
+      })
+      .addCase(updateCompanyProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 export const { clearProfileError } = profileSlice.actions;
