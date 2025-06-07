@@ -21,9 +21,11 @@ const createCompanyProfile = async (req, res) => {
       companyOverview,
       typeOfCompany,
       image,
+      name, 
+      email,
     } = req.body;
 
-    if (!companyName || !numberOfEmployees || !country || !city) {
+    if (!companyName || !numberOfEmployees || !country || !city || !name || !email) {
       return res.status(400).json({
         success: false,
         message: "Required fields are missing",

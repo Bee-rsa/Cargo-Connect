@@ -7,6 +7,7 @@ import UserNavbar from "../components/Common/userNavbar";
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const { company, loading, error } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
   
   const [formData, setFormData] = useState({
     companyName: "",
@@ -15,7 +16,12 @@ const ProfilePage = () => {
     city: "",
     companyOverview: "",
     typeOfCompany: "",
-    image: null
+    image: null,
+
+    // New user fields
+    name: "",
+    email: "",
+    phoneNumber: "",
   });
 
   // Control if we're editing or just viewing
@@ -40,10 +46,15 @@ const ProfilePage = () => {
         city: company.city || "",
         companyOverview: company.companyOverview || "",
         typeOfCompany: company.typeOfCompany || "",
-        image: company.image || null
+        image: company.image || null,
+
+        // User fields
+      name: user?.name || "",
+      email: user?.email || "",
+      phoneNumber: user?.phoneNumber || "",
       });
     }
-  }, [company]);
+  }, [company, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +79,7 @@ const ProfilePage = () => {
   };
 
   const handleCancelClick = () => {
-    if (company) {
+    if (company, user) {
       // Reset form data to company values if cancel
       setFormData({
         companyName: company.companyName || "",
@@ -77,7 +88,12 @@ const ProfilePage = () => {
         city: company.city || "",
         companyOverview: company.companyOverview || "",
         typeOfCompany: company.typeOfCompany || "",
-        image: company.image || null
+        image: company.image || null,
+
+         // User fields
+      name: user?.name || "",
+      email: user?.email || "",
+      phoneNumber: user?.phoneNumber || "",
       });
     }
     setIsEditing(false);
@@ -339,78 +355,117 @@ const ProfilePage = () => {
                 </div>
               </form>
             ) : (
-            <div className="max-w-md w-full mx-auto">
-  <div className="max-w-md w-full mx-auto">
-  <div className="space-y-6 min-h-[500px] flex flex-col justify-center text-gray-500">
-    
-    {/* Profile Picture */}
-                <div className="flex -mt-6 flex-col items-left">
-                  <div className="relative group">
-                    <div className="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-md">
-                      {formData.image ? (
-                        <img src={formData.image} alt="Company Logo" className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
-                          <User className="text-gray-400" size={40} />
-                        </div>
-                      )}
-                    </div>
-                    {isEditing && (
-                      <>
-                        <button
-                          type="button"
-                          onClick={() => fileInputRef.current.click()}
-                          className="absolute -bottom-2 -right-2 bg-custom-blue text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all"
-                          title="Change Company Logo"
-                        >
-                          <Camera size={16} />
-                        </button>
-                        <input
-                          ref={fileInputRef}
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleImageChange}
-                        />
-                      </>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
+              <div className="space-y-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                {isEditing ? (
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                  />
+                ) : (
+                  <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.name || "-"}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div className="space-y-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                {isEditing ? (
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                  />
+                ) : (
+                  <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.email || "-"}</p>
+                )}
+              </div>
+
+              {/* Country and City */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-1">
+                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                      Country
+                    </label>
+                    {isEditing ? (
+                      <input
+                        id="country"
+                        name="country"
+                        type="text"
+                        required
+                        value={formData.country}
+                        onChange={handleChange}
+                        className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                      />
+                    ) : (
+                      <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.country || "-"}</p>
+                    )}
+                  </div>
+                  <div className="space-y-1">
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                      City
+                    </label>
+                    {isEditing ? (
+                      <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        required
+                        value={formData.city}
+                        onChange={handleChange}
+                        className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-custom-blue focus:border-custom-blue"
+                      />
+                    ) : (
+                      <p className="p-3 bg-gray-50 rounded border border-gray-200">{formData.city || "-"}</p>
                     )}
                   </div>
                 </div>
-    
-    {/* User Profile Form */}
-    <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">
-        User Name
-      </label>
-      <p className="p-3 bg-gray-50 rounded border border-gray-200">John Doe</p>
-    </div>
 
-    <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">
-        Email
-      </label>
-      <p className="p-3 bg-gray-50 rounded border border-gray-200">john.doe@example.com</p>
-    </div>
-
-    <div className="space-y-1">
-      <label className="block text-sm font-medium text-gray-700">
-        Role
-      </label>
-      <p className="p-3 bg-gray-50 rounded border border-gray-200">Administrator</p>
-    </div>
-
-    <div className="flex justify-end">
-      <button
-        type="button"
-        className="flex items-center gap-2 px-6 py-3 rounded-lg bg-custom-blue text-white hover:bg-blue-700 transition"
-      >
-        <Edit3 size={16} /> Edit User Profile
-      </button>
-    </div>
-  </div>
-</div>
-</div>
-            )}
+              {/* Buttons */}
+              <div className="flex justify-end gap-4 pt-4">
+                {isEditing ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleCancelClick}
+                      className="px-6 py-2 rounded-md text-sm bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-6 py-2 rounded-md text-sm bg-custom-blue hover:bg-blue-700 text-white font-medium flex items-center gap-2"
+                    >
+                      <Save size={16} />
+                      Save
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleEditClick}
+                    className="px-6 py-2 rounded-md text-sm bg-custom-blue hover:bg-blue-700 text-white font-medium flex items-center gap-2"
+                  >
+                    <Edit3 size={16} />
+                    Edit
+                  </button>
+                )}
+              </div>
+            </form>
+          )}
           </div>
         </div>
       </div>
@@ -419,3 +474,5 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+          
+          

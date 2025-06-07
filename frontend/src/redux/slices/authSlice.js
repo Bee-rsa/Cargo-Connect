@@ -57,6 +57,37 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+// Async Thunk for Updating User Profile
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async (profileData, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("userToken");
+
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/profile`,
+        profileData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      // Update localStorage with new user info
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || { message: "Failed to update profile" }
+      );
+    }
+  }
+);
+
+
 // Slice
 const authSlice = createSlice({
   name: "auth",
