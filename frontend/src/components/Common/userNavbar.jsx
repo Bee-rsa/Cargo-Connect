@@ -6,6 +6,7 @@ import {
   FaBoxOpen,
   FaCog,
   FaQuestionCircle,
+  FaFileContract,
 } from "react-icons/fa";
 import chatIcon from '../../assets/icons8-chat-bubble-50.png';
 import defaultProfilePic from '../../assets/download.png'; 
@@ -142,6 +143,10 @@ const Navbar = () => {
               <FaBoxOpen className="text-white -mt-0.5 w-8 h-8" />
               <Link to="/track-my-parcel" onClick={handleLinkClick}>Track My Parcel</Link>
             </li>
+            <li className="flex text-xl items-center mt-6 p-3 space-x-3">
+  <FaFileContract className="text-white -mt-0.5 w-8 h-8" />
+  <Link to="/my-tender" onClick={handleLinkClick}>My Tender</Link>
+</li>
             <li className="flex text-xl items-center mt-6 p-3 space-x-3">
               <FaCog className="text-white -mt-0.5 w-8 h-8" />
               <Link to="/settings" onClick={handleLinkClick}>My Settings</Link>
