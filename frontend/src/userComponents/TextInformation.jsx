@@ -18,7 +18,7 @@ const TextInformation = () => {
       </div>
 
       {/* Main content card */}
-      <div className="max-w-md mt-24 mx-auto p-6 bg-white font-poppins rounded-lg shadow-lg relative z-10">
+      <div className="max-w-md mt-24 mx-auto p-6 px-4 bg-white font-poppins rounded-lg shadow-lg relative z-10">
         <h1 className="text-2xl font-bold text-gray-800 mb-8 text-center">
           Hi there. How can we help?
         </h1>
