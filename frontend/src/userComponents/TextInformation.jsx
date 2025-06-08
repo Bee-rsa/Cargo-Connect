@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import MessageNav from './MessageNav'; // adjust path if needed
 
 const TextInformation = () => {
   return (
-    <div className="fixed inset-0 bg-custom-blue -z-10">
+    <div className="fixed inset-0 bg-custom-blue -z-10 pb-16"> {/* add padding bottom for nav */}
       {/* Top header with app name and close button */}
       <div className="flex justify-between items-center px-8 mt-8">
         <div className="text-3xl text-white font-extrabold tracking-tight">
@@ -18,8 +19,7 @@ const TextInformation = () => {
       </div>
 
       {/* Main content card */}
-     <div className="max-w-md mt-24 mx-auto p-6 bg-white font-poppins rounded-lg shadow-lg relative z-10 mx-4 sm:mx-auto">
-
+      <div className="max-w-md mt-24 mx-auto p-6 bg-white font-poppins rounded-lg shadow-lg relative z-10 mx-4 sm:mx-auto">
         <h1 className="text-2xl font-bold text-gray-800 mb-8 text-center">
           Hi there. How can we help?
         </h1>
@@ -71,6 +71,9 @@ const TextInformation = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom mobile nav */}
+      <MessageNav />
     </div>
   );
 };
