@@ -5,9 +5,9 @@ import Header from "../Common/Header";
 const UserLayout = () => {
   const location = useLocation();
   const hideFooterRoutes = ["/user-home", "/origin", "/destination", "/mode", 
-    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders"];
+    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders", "/track-my-parcel"];
   const hideHeaderRoutes = ["/user-home","/origin", "/destination", "/mode", 
-    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders"]; 
+    "/profile", "/load", "/goods", "/tenders", "/terms-and-conditions-tenders", "/track-my-parcel"]; 
 
   return (
     <>

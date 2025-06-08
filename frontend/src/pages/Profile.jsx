@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react"; 
 import { useSelector, useDispatch } from "react-redux";
 import { Camera, User, Edit3, Save } from "lucide-react";
-import { fetchCompanyProfile, updateCompanyProfile, clearProfileError } from "../redux/slices/profileSlice";
+import { fetchCompanyProfile, updateCompanyProfile, createCompanyProfile, clearProfileError } from "../redux/slices/profileSlice";
 import UserNavbar from "../components/Common/userNavbar";
 
 const ProfilePage = () => {
@@ -21,7 +21,6 @@ const ProfilePage = () => {
     // New user fields
     name: "",
     email: "",
-    phoneNumber: "",
   });
 
   // Control if we're editing or just viewing
@@ -51,7 +50,6 @@ const ProfilePage = () => {
         // User fields
       name: user?.name || "",
       email: user?.email || "",
-      phoneNumber: user?.phoneNumber || "",
       });
     }
   }, [company, user]);
@@ -93,23 +91,30 @@ const ProfilePage = () => {
          // User fields
       name: user?.name || "",
       email: user?.email || "",
-      phoneNumber: user?.phoneNumber || "",
       });
     }
     setIsEditing(false);
     dispatch(clearProfileError());
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(clearProfileError());
-    try {
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  dispatch(clearProfileError());
+
+  console.log("Submitting formData:", formData);  // <-- Add this to see what you send
+
+  try {
+    if (company && company.id) {
       await dispatch(updateCompanyProfile(formData)).unwrap();
-      setIsEditing(false);
-    } catch (error) {
-      console.error("Profile update error:", error);
+    } else {
+      await dispatch(createCompanyProfile(formData)).unwrap();
     }
-  };
+    setIsEditing(false);
+  } catch (error) {
+    console.error("Profile update/create error:", error);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-custom-blue to-blue-700 flex flex-col">

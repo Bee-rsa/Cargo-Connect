@@ -50,9 +50,13 @@ const Navbar = () => {
     <>
       <nav className="fixed top-0 font-poppins left-0 w-full bg-custom-blue flex justify-between items-center py-2 px-6 z-50">
         {/* Left - Logo */}
-        <div className="text-3xl text-white font-extrabold tracking-tight">
-          <Link to="/user-home">Cargo Connect</Link>
-        </div>
+  <div className="text-3xl text-white font-extrabold tracking-tight mt-2">
+    <Link to="/user-home">Cargo Connect</Link>
+  </div>
+  
+
+
+
 
         {/* Right - Desktop Nav + Icons */}
         <div className="flex items-center gap-6">
@@ -85,13 +89,13 @@ const Navbar = () => {
       {/* Mobile Menu - Full Screen */}
       <div className={`md:hidden fixed inset-0 z-40 bg-custom-blue transform transition-transform duration-300 ease-in-out ${navDrawerOpen ? 'translate-y-0' : '-translate-y-full'}`}>
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-gray-900">
+        <div className="flex justify-between items-center p-4 left-0 right-0 border-b border-gray-900">
         </div>
 
         {/* User Info */}
-        <div className="p-4 -mt-0.5 border-b border-gray-900">
+        <div className="p-4 mt-4 border-b border-custom-blue">
           {/* User section with profile and icon */}
-<div className="flex justify-between items-center p-2 border-b border-gray-900">
+<div className="flex justify-between items-center p-2  border-b border-gray-300">
   {/* Left: Profile picture + name & email */}
   <div className="flex items-center space-x-4">
     <img
@@ -106,7 +110,7 @@ const Navbar = () => {
       <h2 className="text-white text-lg font-semibold">
         {user?.name || 'HotlineUser'}
       </h2>
-      <p className="text-custom-sage text-sm">
+      <p className="text-custom-sage mb-2 text-sm">
         {user?.email || 'user@example.com'}
       </p>
     </div>
@@ -133,7 +137,7 @@ const Navbar = () => {
             </li>
             <li className="flex text-xl items-center mt-6 p-3 space-x-3">
               <FaBoxOpen className="text-white -mt-0.5 w-8 h-8" />
-              <Link to="/track" onClick={handleLinkClick}>Track My Parcel</Link>
+              <Link to="/track-my-parcel" onClick={handleLinkClick}>Track My Parcel</Link>
             </li>
             <li className="flex text-xl items-center mt-6 p-3 space-x-3">
               <FaCog className="text-white -mt-0.5 w-8 h-8" />

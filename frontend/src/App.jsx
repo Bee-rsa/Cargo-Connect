@@ -34,6 +34,7 @@ import Load from "./userComponents/SearchBar/Load";
 import Goods from "./userComponents/SearchBar/Goods";
 import Tender from "./userComponents/Home/Tender"; 
 import TermsAndConditionsTender from "./userComponents/Home/TermsAndConditionsTender";
+import TrackMyParcel from "./pages/TrackMyParcel"; 
 
 /* Company */
 import AboutCargoConnect from "./pages/Company/AboutCargoConnect";
@@ -90,6 +91,7 @@ const App = () => {
             <Route path="/goods" element={<Goods />} />
             <Route path="/tenders" element={<Tender />} />
             <Route path="/terms-and-conditions-tenders" element={<TermsAndConditionsTender />} />
+            <Route path="/track-my-parcel" element={<TrackMyParcel />} />
 
             <Route path="/user-home" element={
   <ProtectedRoute role="customer">
