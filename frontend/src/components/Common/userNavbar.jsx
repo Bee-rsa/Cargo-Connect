@@ -72,8 +72,11 @@ const Navbar = () => {
               </Link>
             )}
             {!navDrawerOpen && (
-  <img src={chatIcon} alt="Chat Icon" className="h-6 w-6" />
+  <Link to="/text-information">
+    <img src={chatIcon} alt="Chat Icon" className="h-6 w-6 cursor-pointer" />
+  </Link>
 )}
+
 
             <button onClick={toggleNavDrawer} className="md:hidden">
               {navDrawerOpen ? (
