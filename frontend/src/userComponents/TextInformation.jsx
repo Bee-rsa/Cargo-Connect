@@ -4,15 +4,15 @@ import { FiSearch } from 'react-icons/fi'; // for search icon
 
 const TextInformation = () => {
   return (
-    <div className="fixed inset-0 bg-custom-blue -z-10 pb-16"> {/* padding bottom for nav */}
+    <div className="fixed inset-0 bg-gray-100 -z-10 pb-4"> {/* padding bottom for nav */}
       {/* Top header with app name and close button */}
       <div className="flex justify-between items-center px-4 mt-4">
-        <div className="text-3xl text-white font-extrabold tracking-tight">
+        <div className="text-3xl text-custom-blue font-extrabold tracking-tight">
           <Link to="/user-home">Cargo Connect</Link>
         </div>
         <Link
           to="/user-home"
-          className="text-white text-2xl font-bold hover:text-gray-200 transition-colors"
+          className="text-custom-blue text-2xl font-bold hover:text-custom-blue transition-colors"
           aria-label="Close"
         >
           ×
@@ -20,8 +20,8 @@ const TextInformation = () => {
       </div>
 
       {/* Main content card */}
-      <div className="max-w-md mt-12 mx-auto p-6 bg-white font-poppins rounded-lg shadow-lg relative z-10 mx-4 sm:mx-auto">
-        <h1 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+      <div className="max-w-md mt-12 mx-auto p-6  font-poppins relative z-10 sm:mx-auto">
+        <h1 className="text-2xl font-bold text-gray-800 mb-8 text-left">
           Hi there. How can we help?
         </h1>
 
@@ -74,16 +74,22 @@ const TextInformation = () => {
         </div>
       </div>
 
-      {/* Tasks container with custom-blue progress bar */}
-      <div className="max-w-md mt-6 mx-auto p-6 bg-white font-poppins rounded-lg shadow-lg relative z-10 mx-4 sm:mx-auto">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Tasks Progress</h2>
-        <div className="w-full bg-gray-200 rounded-full h-4">
-          <div
-            className="bg-custom-blue h-4 rounded-full"
-            style={{ width: '65%' }} // example progress 65%
-          ></div>
-        </div>
-        <p className="mt-2 text-gray-600 text-sm">65% tasks completed</p>
+      {/* Tasks button with progress bar */}
+      <div className="max-w-md mt-2 mx-auto p-6 font-poppins relative z-10 sm:mx-auto">
+        <Link to="/tasks" className="block">
+          <button className="w-full bg-white text-gray-800 border border-gray-300 py-4 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium text-left">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Tasks Progress</h2>
+              <div className="w-full bg-gray-200 rounded-full h-4">
+                <div
+                  className="bg-custom-blue h-4 rounded-full"
+                  style={{ width: '65%' }} // example progress 65%
+                ></div>
+              </div>
+              <p className="mt-2 text-gray-600 text-sm">65% tasks completed</p>
+            </div>
+          </button>
+        </Link>
       </div>
 
       {/* Bottom mobile nav */}
